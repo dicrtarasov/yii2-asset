@@ -3,6 +3,7 @@ namespace dicr\asset;
 
 use yii\web\AssetBundle;
 use yii\web\View;
+use yii\helpers\Json;
 
 /**
  * Базовый Asset для файлов в @web/res
@@ -26,7 +27,9 @@ class BaseResAsset extends AssetBundle {
 	 */
 	public static function registerConfig(View $view, array $config) {
 	    $asset = new static($config);
-	    $asset->register($view);
+	    $key = md5(Json::encode($config));
+	    $view->getAssetManager()->bundles[$key] = $asset;
+        $view->registerAssetBundle($key);
 	    return $asset;
 	}
 }
