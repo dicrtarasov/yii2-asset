@@ -26,7 +26,7 @@ class BaseResAsset extends AssetBundle {
 	 */
 	public static function registerConfig(View $view, array $config) {
 	    $asset = new static($config);
-	    $asset->registerAssetFiles($view);
+	    $asset->register($view);
 	    return $asset;
 	}
 }
