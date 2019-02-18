@@ -36,6 +36,7 @@ class BaseResAsset extends AssetBundle {
 	    parent::init();
 	}
 
+
 	/**
 	 * Комбинированный метод для создания и регистрации
 	 *
