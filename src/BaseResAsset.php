@@ -19,6 +19,24 @@ class BaseResAsset extends AssetBundle {
 	public $baseUrl = '@web/res';
 
 	/**
+	 * {@inheritDoc}
+	 * @see \yii\web\AssetBundle::init()
+	 */
+	public function init() {
+
+	    // конвертируем в массивы
+	    foreach (['css', 'js', 'depends'] as $field) {
+	        if (empty($this->{$field})) {
+	            $this->{$field} = [];
+	        } elseif (!is_array($this->{$field})) {
+	            $this->{$field} = [$this->{$field}];
+	        }
+	    }
+
+	    parent::init();
+	}
+
+	/**
 	 * Комбинированный метод для создания и регистрации
 	 *
 	 * @param \yii\web\View $view
