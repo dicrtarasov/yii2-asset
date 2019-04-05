@@ -9,10 +9,10 @@ use yii\web\AssetBundle;
  * @author Igor (Dicr) Tarasov <develop@dicr.org>
  * @version 2019
  */
-class MomentJsAsset extends AssetBundle {
-
+class MomentJsAsset extends AssetBundle
+{
+    /** @var string[] */
     public $js = [
-        'https://cdn.jsdelivr.net/npm/moment@2.24.0/min/moment-with-locales.min.js'
+        'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js'
     ];
-
 }

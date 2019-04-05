@@ -12,18 +12,20 @@ use yii\helpers\Json;
  * @version 2019
  *
  */
-class BaseResAsset extends AssetBundle {
-
+class BaseResAsset extends AssetBundle
+{
+    /** @var string */
 	public $basePath = '@webroot/res';
 
+	/** @var string */
 	public $baseUrl = '@web/res';
 
 	/**
 	 * {@inheritDoc}
 	 * @see \yii\web\AssetBundle::init()
 	 */
-	public function init() {
-
+	public function init()
+	{
 	    // конвертируем в массивы
 	    foreach (['css', 'js', 'depends'] as $field) {
 	        if (empty($this->{$field})) {
@@ -44,7 +46,8 @@ class BaseResAsset extends AssetBundle {
 	 * @param array $config
 	 * @return static
 	 */
-	public static function registerConfig(View $view, array $config) {
+	public static function registerConfig(View $view, array $config)
+	{
 	    $asset = new static($config);
 	    $key = md5(Json::encode($config));
 	    $view->getAssetManager()->bundles[$key] = $asset;
