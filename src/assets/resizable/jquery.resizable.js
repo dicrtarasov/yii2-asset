@@ -5,6 +5,8 @@ Version 0.13 - 12/22/2015
 www.west-wind.com
 Licensed under MIT License
 */
+import jQuery from 'jquery';
+
 (function($) {
     /* Override jQuery-UI Resizable
 	if (typeof($.fn.resizable) == 'function') {
