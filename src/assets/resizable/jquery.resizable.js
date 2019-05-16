@@ -1,4 +1,3 @@
-/// <reference path="jquery.js" />
 /*
 jquery-watcher
 Version 0.13 - 12/22/2015
@@ -6,14 +5,14 @@ Version 0.13 - 12/22/2015
 www.west-wind.com
 Licensed under MIT License
 */
-(function($, undefined) {
+(function($) {
     /* Override jQuery-UI Resizable
 	if (typeof($.fn.resizable) == 'function') {
         return;
 	}
 	*/
 
-    $.fn.resizable = function fnResizable(options) {
+    $.fn.resizable = function(options) {
         var opt = {
             // selector for handle that starts dragging
             handleSelector: null,
@@ -143,4 +142,4 @@ Licensed under MIT License
             }
         });
     };
-})(jQuery,undefined);
+})(jQuery);
