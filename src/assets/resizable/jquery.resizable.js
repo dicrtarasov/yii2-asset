@@ -1,3 +1,5 @@
+'use strict';
+
 /*
 jquery-watcher
 Version 0.13 - 12/22/2015
@@ -7,13 +9,13 @@ Licensed under MIT License
 */
 (function($) {
     /* Override jQuery-UI Resizable
-	if (typeof($.fn.resizable) == 'function') {
+    if (typeof($.fn.resizable) == 'function') {
         return;
-	}
-	*/
+    }
+    */
 
     $.fn.resizable = function(options) {
-        var opt = {
+        let opt = {
             // selector for handle that starts dragging
             handleSelector: null,
             // resize the width
@@ -38,8 +40,8 @@ Licensed under MIT License
         return this.each(function () {
             var startPos, startTransition;
 
-            var $el = $(this);
-            var $handle = opt.handleSelector ? $(opt.handleSelector) : $el;
+            const $el = $(this);
+            const $handle = opt.handleSelector ? $(opt.handleSelector) : $el;
 
             if (opt.touchActionNone) {
                 $handle.css("touch-action", "none");
@@ -48,27 +50,30 @@ Licensed under MIT License
             $el.addClass("resizable");
             $handle.bind('mousedown.rsz touchstart.rsz', startDragging);
 
-            function noop(e) {
+            function noop(e)
+            {
                 e.stopPropagation();
                 e.preventDefault();
-            };
+            }
 
-            function startDragging(e) {
+            function startDragging(e)
+            {
                 startPos = getMousePos(e);
                 startPos.width = parseInt($el.outerWidth(), 10);
                 startPos.height = parseInt($el.outerHeight(), 10);
 
+                if (opt.onDragStart && opt.onDragStart(e, $el, opt) === false) {
+                    return;
+                }
+
                 startTransition = $el.css("transition");
                 $el.css("transition", "none");
 
-                if (opt.onDragStart) {
-                    if (opt.onDragStart(e, $el, opt) === false)
-                        return;
-                }
                 opt.dragFunc = doDrag;
 
                 $(document).bind('mousemove.rsz', opt.dragFunc);
                 $(document).bind('mouseup.rsz', stopDragging);
+
                 if (window.Touch || navigator.maxTouchPoints) {
                     $(document).bind('touchmove.rsz', opt.dragFunc);
                     $(document).bind('touchend.rsz', stopDragging);
@@ -77,31 +82,49 @@ Licensed under MIT License
                 $(document).bind('selectstart.rsz', noop); // disable selection
             }
 
-            function doDrag(e) {
-                var pos = getMousePos(e);
-
-                if (opt.resizeWidth) {
-                    var newWidth = startPos.width + pos.x - startPos.x;
-                    $el.css({
-                    	width: newWidth,
-                    	minWidth: newWidth,
-                    	maxWidth: newWidth
-                    });
+            function doDrag(e)
+            {
+                // если прошлое событие еще не обработано, то сохраняем и выходим
+                if (doDrag.e) {
+                    doDrag.e = e;
+                    console.debug('already');
+                    return;
                 }
 
-                if (opt.resizeHeight) {
-                    var newHeight = startPos.height + pos.y - startPos.y;
-                    $el.css({
-                    	height: newHeight,
-                    	minHeight: newHeight,
-                    	maxHeight: newHeight
-                    });
-                }
+                // сохраняем новое значение для обработки
+                doDrag.e = e;
 
-                if (opt.onDrag)
-                    opt.onDrag(e, $el, opt);
+                // планируем обработку
+                window.requestAnimationFrame(function() {
+                    // если нет необработаных событий, то выходим
+                    const e = doDrag.e || null;
+                    if (!e) {
+                        return;
+                    }
 
-                //console.log('dragging', e, pos, newWidth, newHeight);
+                    // очищаем необработанные события
+                    doDrag.e = null;
+
+                    const pos = getMousePos(e);
+                    const css = {};
+
+                    if (opt.resizeWidth) {
+                        css.width = css.minWidth = css.maxWidth = startPos.width + pos.x - startPos.x;;
+                    }
+
+                    if (opt.resizeHeight) {
+                        css.height = css.minHeight = css.maxHeight = startPos.height + pos.y - startPos.y;
+                    }
+
+                    if (Object.keys(css).length > 0) {
+                        $el.css(css);
+                    }
+
+                    // обрабочик пользователя
+                    if (opt.onDrag) {
+                        opt.onDrag(e, $el, opt);
+                    }
+                });
             }
 
             function stopDragging(e) {
@@ -121,8 +144,9 @@ Licensed under MIT License
                 // reset changed values
                 $el.css("transition", startTransition);
 
-                if (opt.onDragEnd)
+                if (opt.onDragEnd) {
                     opt.onDragEnd(e, $el, opt);
+                }
 
                 return false;
             }
