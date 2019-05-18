@@ -1,7 +1,7 @@
 .resizer-h, .resizer-v {
-    background-color: hsl(116, 31%, 95%);
-    border: 1px solid hsl(116, 31%, 85%);;
-    flex: 0 0 5px;
+    background-color: hsl(116, 31%, 96%);
+    border: 1px solid hsl(116, 31%, 85%);
+    flex: 0 0 7px;
 }
 
 .resizer-h {
