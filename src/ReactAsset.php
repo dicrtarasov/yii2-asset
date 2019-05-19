@@ -15,12 +15,12 @@ class ReactAsset extends AssetBundle
     /** @var array */
     const JS = [
         'prod' => [
-            'https://unpkg.com/react/umd/react.production.min.js',
-            'https://unpkg.com/react-dom/umd/react-dom.production.min.js'
+            ['https://unpkg.com/react/umd/react.production.min.js', 'crossorigin' => true],
+            ['https://unpkg.com/react-dom/umd/react-dom.production.min.js', 'crossorigin' => true]
         ],
         'dev' => [
-            'https://unpkg.com/react/umd/react.development.js',
-            'https://unpkg.com/react-dom/umd/react-dom.development.js'
+            ['https://unpkg.com/react/umd/react.development.js', 'crossorigin' => true],
+            ['https://unpkg.com/react-dom/umd/react-dom.development.js', 'crossorigin' => true]
         ]
     ];
 
