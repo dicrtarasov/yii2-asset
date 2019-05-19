@@ -1,7 +1,7 @@
 <?php
 namespace dicr\asset;
 
-use yii\web\AssetManager;
+use yii\web\AssetBundle;
 
 /**
  * ReactJs Asset
@@ -10,7 +10,7 @@ use yii\web\AssetManager;
  * @version 2019
  *
  */
-class ReactAsset extends AssetManager
+class ReactAsset extends AssetBundle
 {
     /** @var array */
     const JS = [
