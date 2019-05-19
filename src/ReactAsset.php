@@ -1,7 +1,6 @@
 <?php
-namespace dicr\assets;
+namespace dicr\asset;
 
-use dicr\asset\BabelAsset;
 use yii\web\AssetManager;
 
 /**
