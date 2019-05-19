@@ -37,6 +37,8 @@ class ReactAsset extends AssetBundle
     {
         $this->js = self::JS[YII_ENV];
 
+        echo '<xmp>'; var_dump(YII_EBV, $this); exit;
+
         parent::init();
     }
 }
