@@ -14,11 +14,11 @@ class ReactAsset extends AssetBundle
 {
     /** @var array */
     const JS = [
-        'dev' => [
+        'prod' => [
             'https://unpkg.com/react@16/umd/react.production.min.js',
             'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js'
         ],
-        'prod' => [
+        'dev' => [
             'https://unpkg.com/react@16/umd/react.development.min.js',
             'https://unpkg.com/react-dom@16/umd/react-dom.development.min.js'
         ]
