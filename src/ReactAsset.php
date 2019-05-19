@@ -14,11 +14,11 @@ class ReactAsset extends AssetBundle
 {
     /** @var array */
     const JS = [
-        YII_ENV_PROD => [
+        'dev' => [
             'https://unpkg.com/react@16/umd/react.production.min.js',
             'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js'
         ],
-        YII_ENV_DEV => [
+        'prod' => [
             'https://unpkg.com/react@16/umd/react.development.min.js',
             'https://unpkg.com/react-dom@16/umd/react-dom.development.min.js'
         ]
@@ -35,9 +35,7 @@ class ReactAsset extends AssetBundle
      */
     public function init()
     {
-        $this->js = self::JS[YII_ENV];
-
-        echo '<xmp>'; var_dump(YII_EBV, $this); exit;
+        $this->js = self::JS[YII_ENV_DEV ? 'dev' : 'prod'];
 
         parent::init();
     }
