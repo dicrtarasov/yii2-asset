@@ -8,7 +8,7 @@ use yii\web\AssetBundle;
  *
  * @author Igor (Dicr) Tarasov <develop@dicr.org>
  * @version 2019
- *
+ * @link https://reactjs.org
  */
 class ReactAsset extends AssetBundle
 {
@@ -36,5 +36,7 @@ class ReactAsset extends AssetBundle
     public function init()
     {
         $this->js = self::JS[YII_ENV];
+
+        parent::init();
     }
 }

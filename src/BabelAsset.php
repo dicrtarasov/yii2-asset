@@ -12,6 +12,7 @@ use yii\web\AssetBundle;
  */
 class BabelAsset extends AssetBundle
 {
+    /** @var string[] */
     public $js = [
         'https://unpkg.com/babel-standalone'
     ];
