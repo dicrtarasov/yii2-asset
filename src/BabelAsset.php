@@ -14,6 +14,6 @@ class BabelAsset extends AssetBundle
 {
     /** @var string[] */
     public $js = [
-        'https://unpkg.com/babel-standalone'
+        'https://unpkg.com/@babel/standalone/babel.min.js'
     ];
 }
