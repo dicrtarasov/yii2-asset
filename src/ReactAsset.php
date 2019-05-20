@@ -24,11 +24,6 @@ class ReactAsset extends AssetBundle
         ]
     ];
 
-    /** @var string[] */
-    public $depends = [
-        BabelAsset::class
-    ];
-
     /**
      * {@inheritDoc}
      * @see \yii\web\AssetManager::init()
