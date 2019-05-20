@@ -87,7 +87,6 @@ Licensed under MIT License
                 // если прошлое событие еще не обработано, то сохраняем и выходим
                 if (doDrag.e) {
                     doDrag.e = e;
-                    console.debug('already');
                     return;
                 }
 
