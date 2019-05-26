@@ -21,6 +21,6 @@ class ReactBootstrapAsset extends AssetBundle
 
     /** @var string[] */
     public $depends = [
-        ReactBootstrapAsset::class
+        ReactAsset::class
     ];
 }
