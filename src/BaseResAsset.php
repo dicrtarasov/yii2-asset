@@ -48,10 +48,14 @@ class BaseResAsset extends AssetBundle
 	 */
 	public static function registerConfig(View $view, array $config)
 	{
+        $am = $view->getAssetManager();
 	    $asset = new static($config);
+	    $asset->publish($am);
+
 	    $key = static::class . '-' . md5(Json::encode($config));
 	    $view->getAssetManager()->bundles[$key] = $asset;
         $view->registerAssetBundle($key);
+
 	    return $asset;
 	}
 }
