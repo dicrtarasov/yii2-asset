@@ -14,7 +14,6 @@ class FontAwesomeAsset extends AssetBundle
 {
     /** @var string[] */
     public $css = [
-        // 'https://use.fontawesome.com/releases/v5.8.1/css/all.css',
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.min.css'
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'
     ];
 }
