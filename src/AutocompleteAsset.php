@@ -5,25 +5,24 @@ use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
 /**
- * Создает ползунок для изменения размера (модифицированная версия).
+ * Ресурсы автоподсказки.
  *
  * @author Igor (Dicr) Tarasov <develop@dicr.org>
  * @version 2019
- * @link https://github.com/RickStrahl/jquery-resizable
  */
-class ResizableAsset extends AssetBundle
+class AutocompleteAsset extends AssetBundle
 {
     /** @var string */
-    public $sourcePath = __DIR__ . '/assets/resizable';
+    public $sourcePath = __DIR__ . '/assets/autocomplete';
 
     /** @var string[] */
     public $js = [
-        'jquery.resizable.js'
+        'https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.10/jquery.autocomplete.min.js'
     ];
 
     /** @var string[] */
     public $css = [
-        'jquery.resizable.css'
+        'autocomplete.css'
     ];
 
     /** @var string[] */

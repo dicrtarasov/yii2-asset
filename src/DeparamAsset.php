@@ -13,7 +13,7 @@ use yii\web\JqueryAsset;
 class DeparamAsset extends AssetBundle
 {
     /** @var string */
-    public $sourcePath = '@dicr/asset/assets/deparam';
+    public $sourcePath = __DIR__ . '/assets/deparam';
 
     /** @var string[] */
 	public $js = [
