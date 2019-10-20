@@ -11,7 +11,7 @@
 	],
 	"minimum-stability" : "stable",
 	"require" : {
-		"php" : ">=7.0",
+		"php" : ">=7.2",
 		"yiisoft/yii2" : "~2.0"
 	},
 	"autoload" : {
@@ -20,7 +20,7 @@
 		}
 	},
 	"keywords" : [
-		"php yii2 asset-bundle"
+		"dicr yii2 asset-bundle"
 	],
 	"repositories" : [{
 			"type" : "composer",
@@ -33,5 +33,6 @@
 	},
 	"require-dev" : {
 		"phpunit/phpunit" : "~8.1"
-	}
+	},
+	"license" : "Apache-2.0"
 }
