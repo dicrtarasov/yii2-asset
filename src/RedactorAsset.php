@@ -34,10 +34,7 @@ class RedactorAsset extends AssetBundle
     public function init()
     {
         // добавляем языковый пакет
-        $langAsset = 'lang/' . \Yii::$app->language . '.js';
-        if (file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $langAsset)) {
-            $this->js[] = $langAsset;
-        }
+        $this->addLangResources(\Yii::$app->language);
 
         parent::init();
     }
