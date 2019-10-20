@@ -41,4 +41,37 @@ class RedactorAsset extends AssetBundle
 
         parent::init();
     }
+
+    /**
+     * Добавляет языковый пакет.
+     *
+     * @param string $lang
+     */
+    public function addLangResources(string $lang)
+    {
+        $langAsset = 'lang/' . $lang . '.js';
+        if (!in_array($langAsset, $this->js) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $langAsset)) {
+            $this->js[] = $langAsset;
+        }
+    }
+
+    /**
+     * Добавляет ресурсы плагинов.
+     *
+     * @param string[] $plugins
+     */
+    public function addPluginsResources(array $plugins)
+    {
+        foreach ($plugins as $plugin) {
+            $js = 'plugins/' . $plugin . '/' . $plugin . '.js';
+            if (!in_array($js, $this->js) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $js)) {
+                $this->js[] = $js;
+            }
+
+            $css = 'plugins/' . $plugin . '/' . $plugin . '.css';
+            if (!in_array($css, $this->css) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $css)) {
+                $this->css[] = $css;
+            }
+        }
+    }
 }
