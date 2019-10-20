@@ -26,4 +26,19 @@ class RedactorAsset extends AssetBundle
     public $js = [
         'redactor.min.js'
     ];
+
+    /**
+     * {@inheritDoc}
+     * @see \yii\web\AssetBundle::init()
+     */
+    public function init()
+    {
+        // добавляем языковый пакет
+        $langAsset = 'lang/' . \Yii::$app->language . '.js';
+        if (file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $langAsset)) {
+            $this->js[] = $langAsset;
+        }
+
+        parent::init();
+    }
 }
