@@ -2,6 +2,7 @@
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
+use yii\web\JqueryAsset;
 
 /**
  * Ресурсы редактора.
@@ -25,6 +26,11 @@ class RedactorAsset extends AssetBundle
     /** @var string[] */
     public $js = [
         'redactor.min.js'
+    ];
+
+    /** @var string[] */
+    public $depends = [
+        JqueryAsset::class
     ];
 
     /**
