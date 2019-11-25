@@ -1,19 +1,24 @@
 <?php
-namespace app\assets;
+/**
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 06.04.19 03:38:41
+ */
+
+declare(strict_types = 1);
+namespace dicr\asset;
 
 use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
 /**
  * Summernote Asset Bundle.
- *
- * @author Igor (Dicr) Tarasov <develop@dicr.org>
- * @version 2019
  */
 class SummernoteAsset extends AssetBundle
 {
     /** @var array[] конфиг для Bootstrap 3.x */
-    const BS3 = [
+    public const BS3 = [
         'css' => [
             'http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css'
         ],
@@ -26,7 +31,7 @@ class SummernoteAsset extends AssetBundle
     ];
 
     /** @var array[] конфиг для Bootstrap 4.x */
-    const BS4 = [
+    public const BS4 = [
         'css' => [
             'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css'
         ],
@@ -64,19 +69,19 @@ class SummernoteAsset extends AssetBundle
      */
     private function addResources(array $res)
     {
-        if (!empty($res['css'])) {
+        if (! empty($res['css'])) {
             foreach ($res['css'] as $css) {
                 $this->css[] = $css;
             }
         }
 
-        if (!empty($res['js'])) {
+        if (! empty($res['js'])) {
             foreach ($res['js'] as $js) {
                 $this->js[] = $js;
             }
         }
 
-        if (!empty($res['depends'])) {
+        if (! empty($res['depends'])) {
             foreach ($res['depends'] as $deps) {
                 $this->depends[] = $deps;
             }

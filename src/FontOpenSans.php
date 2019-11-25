@@ -1,4 +1,12 @@
 <?php
+/**
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 24.04.19 00:30:57
+ */
+
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -6,8 +14,6 @@ use yii\web\AssetBundle;
 /**
  * Шрифт OpenSans
  *
- * @author Igor (Dicr) Tarasov <develop@dicr.org>
- * @version 2019
  * @link https://fonts.google.com/specimen/Open+Sans
  */
 class FontOpenSans extends AssetBundle

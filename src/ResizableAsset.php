@@ -1,4 +1,12 @@
 <?php
+/**
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 06.10.19 08:19:12
+ */
+
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -7,8 +15,6 @@ use yii\web\JqueryAsset;
 /**
  * Создает ползунок для изменения размера (модифицированная версия).
  *
- * @author Igor (Dicr) Tarasov <develop@dicr.org>
- * @version 2019
  * @link https://github.com/RickStrahl/jquery-resizable
  */
 class ResizableAsset extends AssetBundle

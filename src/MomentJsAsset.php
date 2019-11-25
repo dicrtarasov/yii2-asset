@@ -1,13 +1,18 @@
 <?php
+/**
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 06.04.19 02:15:29
+ */
+
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
 
 /**
  * MomentJs
- *
- * @author Igor (Dicr) Tarasov <develop@dicr.org>
- * @version 2019
  */
 class MomentJsAsset extends AssetBundle
 {

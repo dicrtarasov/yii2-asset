@@ -1,55 +1,56 @@
-(function($R)
-{
+/*
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 30.04.19 02:39:05
+ */
+
+(function ($R) {
     $R.add('plugin', 'filemanager', {
         translations: {
-    		en: {
-    			"choose": "Choose"
-    		}
+            en: {
+                "choose": "Choose"
+            }
         },
-        init: function(app)
-        {
+        init: function (app) {
             this.app = app;
             this.lang = app.lang;
             this.opts = app.opts;
         },
         // messages
-         onmodal: {
+        onmodal: {
             file: {
-                open: function($modal, $form)
-                {
+                open: function ($modal, $form) {
                     if (!this.opts.fileManagerJson) return;
                     this._load($modal)
                 }
             }
         },
 
-		// private
-		_load: function($modal)
-		{
-			var $body = $modal.getBody();
+        // private
+        _load: function ($modal) {
+            var $body = $modal.getBody();
 
-			this.$box = $R.dom('<div>');
-			this.$box.attr('data-title', this.lang.get('choose'));
-			this.$box.addClass('redactor-modal-tab');
-			this.$box.hide();
-			this.$box.css({
-    			overflow: 'auto',
-    			height: '300px',
-    			'line-height': 1
-			});
+            this.$box = $R.dom('<div>');
+            this.$box.attr('data-title', this.lang.get('choose'));
+            this.$box.addClass('redactor-modal-tab');
+            this.$box.hide();
+            this.$box.css({
+                overflow: 'auto',
+                height: '300px',
+                'line-height': 1
+            });
 
-			$body.append(this.$box);
+            $body.append(this.$box);
 
-			$R.ajax.get({
-        		url: this.opts.fileManagerJson,
-        		success: this._parse.bind(this)
-    		});
-		},
-		_parse: function(data)
-		{
+            $R.ajax.get({
+                url: this.opts.fileManagerJson,
+                success: this._parse.bind(this)
+            });
+        },
+        _parse: function (data) {
             var $ul = $R.dom('<ul id="redactor-filemanager-list">');
-            for (var key in data)
-            {
+            for (var key in data) {
                 var obj = data[key];
                 if (typeof obj !== 'object') continue;
 
@@ -59,7 +60,7 @@
                 $item.addClass('redactor-file-manager-link');
                 $item.attr('data-params', encodeURI(JSON.stringify(obj)));
                 $item.text(obj.title || obj.name);
-				$item.on('click', this._insert.bind(this));
+                $item.on('click', this._insert.bind(this));
 
                 var $name = $R.dom('<span>');
                 $name.addClass('r-file-name');
@@ -71,20 +72,19 @@
                 $size.text('(' + obj.size + ')');
                 $item.append($size);
 
-				$li.append($item);
-				$ul.append($li);
+                $li.append($item);
+                $ul.append($li);
             }
 
             this.$box.append($ul);
-		},
-		_insert: function(e)
-		{
-			e.preventDefault();
+        },
+        _insert: function (e) {
+            e.preventDefault();
 
-			var $el = $R.dom(e.target).closest('.redactor-file-manager-link');
-			var data = JSON.parse(decodeURI($el.attr('data-params')));
+            var $el = $R.dom(e.target).closest('.redactor-file-manager-link');
+            var data = JSON.parse(decodeURI($el.attr('data-params')));
 
-			this.app.api('module.file.insert', { file: data });
-		}
+            this.app.api('module.file.insert', {file: data});
+        }
     });
 })(Redactor);

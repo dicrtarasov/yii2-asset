@@ -1,24 +1,31 @@
-(function($R) {
+/*
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 30.04.19 02:39:05
+ */
+
+(function ($R) {
     $R.add('plugin', 'pagebreak', {
         translations: {
             en: {
                 "insert-page-break": "Insert Page Break"
             }
         },
-        init: function(app) {
+        init: function (app) {
             this.app = app;
             this.lang = app.lang;
             this.selection = app.selection;
             this.editor = app.editor;
         },
-        start: function() {
+        start: function () {
             var $button = this.app.toolbar.addButton('pagebreak', {
                 title: this.lang.get('insert-page-break'),
                 api: 'plugin.pagebreak.insert'
             });
             $button.setIcon('<i class="re-icon-pagebreak"></i>');
         },
-        insert: function() {
+        insert: function () {
             var $pagebreakNode = $('<hr class="redactor_pagebreak" style="display:none" unselectable="on" contenteditable="false" />'),
                 $currentBlock = $(this.selection.getBlock());
 
@@ -26,8 +33,7 @@
 
             if ($currentBlock.length) {
                 $pagebreakNode.insertAfter($currentBlock);
-            }
-            else {
+            } else {
                 $pagebreakNode.appendTo(this.editor.getElement().nodes[0]);
             }
 

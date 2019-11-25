@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="PhpEntryPointsManager">
+    <entry_point>
+      <entry_point TYPE="phpNamespace" FQNAME="\dicr\asset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\AutocompleteAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\BabelAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\BaseResAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\DeparamAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\FancyboxAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\FontAwesomeAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\FontOpenSans" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\InputMaskAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\MomentJsAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\MultiselectAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\ReactAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\ReactBootstrapAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\RedactorAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\ResizableAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\SlickAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\SummernoteAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\YaMapsAsset" />
+    </entry_point>
+    <pattern value="\dicr\asset\AutocompleteAsset" />
+    <pattern value="\dicr\asset\BabelAsset" />
+    <pattern value="\dicr\asset\BaseResAsset" />
+    <pattern value="\dicr\asset\DeparamAsset" />
+    <pattern value="\dicr\asset\FancyboxAsset" />
+    <pattern value="\dicr\asset\FontAwesomeAsset" />
+    <pattern value="\dicr\asset\FontOpenSans" />
+    <pattern value="\dicr\asset\InputMaskAsset" />
+    <pattern value="\dicr\asset\MomentJsAsset" />
+    <pattern value="\dicr\asset\MultiselectAsset" />
+    <pattern value="\dicr\asset\ReactAsset" />
+    <pattern value="\dicr\asset\ReactBootstrapAsset" />
+    <pattern value="\dicr\asset\RedactorAsset" />
+    <pattern value="\dicr\asset\ResizableAsset" />
+    <pattern value="\dicr\asset\SlickAsset" />
+    <pattern value="\dicr\asset\SummernoteAsset" />
+    <pattern value="\dicr\asset\YaMapsAsset" />
+  </component>
+</project>

@@ -1,16 +1,25 @@
+/*
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 30.04.19 02:39:05
+ */
+
 .redactor-variables-list {
     list-style: none;
     margin: 0;
     padding: 0;
 }
+
 .redactor-variables-list li {
     display: inline-block;
     margin-right: 4px;
     margin-bottom: 4px;
 }
+
 .redactor-variables-list span {
     white-space: nowrap;
-    background: rgba(0,125,255, .75);
+    background: rgba(0, 125, 255, .75);
     color: #fff;
     display: inline-block;
     padding: 3px 6px;
@@ -18,6 +27,7 @@
     border-radius: 4px;
     cursor: pointer;
 }
+
 .redactor-variables-list span.redactor-variables-item-selected {
     background: #ee698a;
 }

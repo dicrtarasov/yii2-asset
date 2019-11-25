@@ -1,3 +1,10 @@
+/*
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 30.04.19 02:39:05
+ */
+
 #redactor-handle-list {
     font-family: "Trebuchet MS", 'Helvetica Neue', Helvetica, Tahoma, sans-serif;
     display: none;
@@ -13,6 +20,7 @@
     font-size: 14px;
     padding: 0;
 }
+
 #redactor-handle-list a {
     display: block;
     text-decoration: none;
@@ -21,6 +29,7 @@
     color: #000;
     border-bottom: 1px solid rgba(0, 0, 0, .05);
 }
+
 #redactor-handle-list a:hover {
     color: #fff !important;
     background-color: #449aef !important;

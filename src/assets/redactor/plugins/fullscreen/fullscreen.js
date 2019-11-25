@@ -1,13 +1,18 @@
-(function($R)
-{
+/*
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 30.04.19 02:39:05
+ */
+
+(function ($R) {
     $R.add('plugin', 'fullscreen', {
         translations: {
             en: {
-    			"fullscreen": "Fullscreen"
-    		}
+                "fullscreen": "Fullscreen"
+            }
         },
-        init: function(app)
-        {
+        init: function (app) {
             this.app = app;
             this.opts = app.opts;
             this.lang = app.lang;
@@ -24,8 +29,7 @@
             this.docScroll = 0;
         },
         // public
-        start: function()
-        {
+        start: function () {
             var data = {
                 title: this.lang.get('fullscreen'),
                 api: 'plugin.fullscreen.toggle'
@@ -36,16 +40,14 @@
 
             this.$target = (this.toolbar.isTarget()) ? this.toolbar.getTargetElement() : this.$body;
 
-			if (this.opts.fullscreen) this.toggle();
+            if (this.opts.fullscreen) this.toggle();
 
         },
-        toggle: function()
-		{
-			return (this.isOpen) ? this.close() : this.open();
-		},
-		open: function()
-		{
-    		this.docScroll = this.$doc.scrollTop();
+        toggle: function () {
+            return (this.isOpen) ? this.close() : this.open();
+        },
+        open: function () {
+            this.docScroll = this.$doc.scrollTop();
 
             this._createPlacemarker();
             this.selection.save();
@@ -57,7 +59,7 @@
             if (this.opts.toolbarExternal) this._buildInternalToolbar();
 
             this.$target.prepend($container);
-			this.$target.addClass('redactor-body-fullscreen');
+            this.$target.addClass('redactor-body-fullscreen');
 
             $container.addClass('redactor-box-fullscreen');
             if (this.isTarget) $container.addClass('redactor-box-fullscreen-target');
@@ -69,19 +71,18 @@
 
             this._resize();
             this.$win.on('resize.redactor-plugin-fullscreen', this._resize.bind(this));
-			this.$doc.scrollTop(0);
+            this.$doc.scrollTop(0);
 
             var button = this.toolbar.getButton('fullscreen');
             button.setIcon('<i class="re-icon-retract"></i>');
 
             this.selection.restore();
-			this.isOpen = true;
-			this.opts.zindex = 1051;
-		},
-		close: function()
-		{
-    		this.isOpen = false;
-			this.opts.zindex = false;
+            this.isOpen = true;
+            this.opts.zindex = 1051;
+        },
+        close: function () {
+            this.isOpen = false;
+            this.opts.zindex = false;
             this.selection.save();
 
             var $container = this.container.getElement();
@@ -91,47 +92,44 @@
             if (this.opts.toolbarExternal) this._buildExternalToolbar();
 
             this.$target.removeClass('redactor-body-fullscreen');
-    		this.$win.off('resize.redactor-plugin-fullscreen');
+            this.$win.off('resize.redactor-plugin-fullscreen');
             $html.css('overflow', '');
 
-			$container.removeClass('redactor-box-fullscreen redactor-box-fullscreen-target');
-			$editor.css('height', 'auto');
+            $container.removeClass('redactor-box-fullscreen redactor-box-fullscreen-target');
+            $editor.css('height', 'auto');
 
-			if (this.opts.minHeight) $editor.css('minHeight', this.opts.minHeight);
-			if (this.opts.maxHeight) $editor.css('maxHeight', this.opts.maxHeight);
+            if (this.opts.minHeight) $editor.css('minHeight', this.opts.minHeight);
+            if (this.opts.maxHeight) $editor.css('maxHeight', this.opts.maxHeight);
 
             var button = this.toolbar.getButton('fullscreen');
             button.setIcon('<i class="re-icon-expand"></i>');
 
-    		this._removePlacemarker($container);
+            this._removePlacemarker($container);
             this.selection.restore();
             this.$doc.scrollTop(this.docScroll);
-		},
+        },
 
-		// private
-		_resize: function()
-		{
-    		var $toolbar = this.toolbar.getElement();
+        // private
+        _resize: function () {
+            var $toolbar = this.toolbar.getElement();
             var $editor = this.editor.getElement();
-    		var height = this.$win.height() - $toolbar.height();
+            var height = this.$win.height() - $toolbar.height();
 
-    		$editor.height(height);
-		},
-		_buildInternalToolbar: function()
-		{
-			var $wrapper = this.toolbar.getWrapper();
-			var $toolbar = this.toolbar.getElement();
+            $editor.height(height);
+        },
+        _buildInternalToolbar: function () {
+            var $wrapper = this.toolbar.getWrapper();
+            var $toolbar = this.toolbar.getElement();
 
-			$wrapper.addClass('redactor-toolbar-wrapper');
-			$wrapper.append($toolbar);
+            $wrapper.addClass('redactor-toolbar-wrapper');
+            $wrapper.append($toolbar);
 
-			$toolbar.removeClass('redactor-toolbar-external');
-			$container.prepend($wrapper);
-		},
-		_buildExternalToolbar: function()
-		{
-			var $wrapper = this.toolbar.getWrapper();
-			var $toolbar = this.toolbar.getElement();
+            $toolbar.removeClass('redactor-toolbar-external');
+            $container.prepend($wrapper);
+        },
+        _buildExternalToolbar: function () {
+            var $wrapper = this.toolbar.getWrapper();
+            var $toolbar = this.toolbar.getElement();
 
             this.$external = $R.dom(this.opts.toolbarExternal);
 
@@ -139,18 +137,16 @@
             this.$external.append($toolbar);
 
             $wrapper.remove();
-		},
-		_createPlacemarker: function()
-		{
-    		var $container = this.container.getElement();
+        },
+        _createPlacemarker: function () {
+            var $container = this.container.getElement();
 
-    		this.$placemarker = $R.dom('<span />');
-    		$container.after(this.$placemarker);
-		},
-		_removePlacemarker: function($container)
-		{
-    		this.$placemarker.before($container);
+            this.$placemarker = $R.dom('<span />');
+            $container.after(this.$placemarker);
+        },
+        _removePlacemarker: function ($container) {
+            this.$placemarker.before($container);
             this.$placemarker.remove();
-		}
+        }
     });
 })(Redactor);

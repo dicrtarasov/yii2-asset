@@ -1,23 +1,28 @@
-(function($R)
-{
+/*
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 30.04.19 02:39:05
+ */
+
+(function ($R) {
     $R.add('plugin', 'table', {
         translations: {
             en: {
-        		"table": "Table",
-        		"insert-table": "Insert table",
-        		"insert-row-above": "Insert row above",
-        		"insert-row-below": "Insert row below",
-        		"insert-column-left": "Insert column left",
-        		"insert-column-right": "Insert column right",
-        		"add-head": "Add head",
-        		"delete-head": "Delete head",
-        		"delete-column": "Delete column",
-        		"delete-row": "Delete row",
-        		"delete-table": "Delete table"
-        	}
+                "table": "Table",
+                "insert-table": "Insert table",
+                "insert-row-above": "Insert row above",
+                "insert-row-below": "Insert row below",
+                "insert-column-left": "Insert column left",
+                "insert-column-right": "Insert column right",
+                "add-head": "Add head",
+                "delete-head": "Delete head",
+                "delete-column": "Delete column",
+                "delete-row": "Delete row",
+                "delete-table": "Delete table"
+            }
         },
-        init: function(app)
-        {
+        init: function (app) {
             this.app = app;
             this.lang = app.lang;
             this.opts = app.opts;
@@ -32,121 +37,110 @@
         // messages
         ondropdown: {
             table: {
-                observe: function(dropdown)
-                {
+                observe: function (dropdown) {
                     this._observeDropdown(dropdown);
                 }
             }
         },
-        onbottomclick: function()
-        {
+        onbottomclick: function () {
             this.insertion.insertToEnd(this.editor.getLastNode(), 'table');
         },
 
         // public
-        start: function()
-        {
-			var dropdown = {
-    			observe: 'table',
-    			'insert-table': {
-    				title: this.lang.get('insert-table'),
-    				api: 'plugin.table.insert'
-    			},
-    			'insert-row-above': {
+        start: function () {
+            var dropdown = {
+                observe: 'table',
+                'insert-table': {
+                    title: this.lang.get('insert-table'),
+                    api: 'plugin.table.insert'
+                },
+                'insert-row-above': {
                     title: this.lang.get('insert-row-above'),
-    				classname: 'redactor-table-item-observable',
+                    classname: 'redactor-table-item-observable',
                     api: 'plugin.table.addRowAbove'
-    			},
-    			'insert-row-below': {
-        			title: this.lang.get('insert-row-below'),
-        			classname: 'redactor-table-item-observable',
+                },
+                'insert-row-below': {
+                    title: this.lang.get('insert-row-below'),
+                    classname: 'redactor-table-item-observable',
                     api: 'plugin.table.addRowBelow'
-    			},
-    			'insert-column-left': {
-        			title: this.lang.get('insert-column-left'),
-        			classname: 'redactor-table-item-observable',
+                },
+                'insert-column-left': {
+                    title: this.lang.get('insert-column-left'),
+                    classname: 'redactor-table-item-observable',
                     api: 'plugin.table.addColumnLeft'
-    			},
-    			'insert-column-right': {
-        			title: this.lang.get('insert-column-right'),
-        			classname: 'redactor-table-item-observable',
+                },
+                'insert-column-right': {
+                    title: this.lang.get('insert-column-right'),
+                    classname: 'redactor-table-item-observable',
                     api: 'plugin.table.addColumnRight'
-    			},
-    			'add-head': {
-        			title: this.lang.get('add-head'),
-        			classname: 'redactor-table-item-observable',
+                },
+                'add-head': {
+                    title: this.lang.get('add-head'),
+                    classname: 'redactor-table-item-observable',
                     api: 'plugin.table.addHead'
-    			},
-    			'delete-head': {
-        			title: this.lang.get('delete-head'),
-        			classname: 'redactor-table-item-observable',
+                },
+                'delete-head': {
+                    title: this.lang.get('delete-head'),
+                    classname: 'redactor-table-item-observable',
                     api: 'plugin.table.deleteHead'
-    			},
-    			'delete-column': {
-        			title: this.lang.get('delete-column'),
-        			classname: 'redactor-table-item-observable',
+                },
+                'delete-column': {
+                    title: this.lang.get('delete-column'),
+                    classname: 'redactor-table-item-observable',
                     api: 'plugin.table.deleteColumn'
-    			},
-    			'delete-row': {
-        			title: this.lang.get('delete-row'),
-        			classname: 'redactor-table-item-observable',
+                },
+                'delete-row': {
+                    title: this.lang.get('delete-row'),
+                    classname: 'redactor-table-item-observable',
                     api: 'plugin.table.deleteRow'
-    			},
-    			'delete-table': {
-        			title: this.lang.get('delete-table'),
-        			classname: 'redactor-table-item-observable',
+                },
+                'delete-table': {
+                    title: this.lang.get('delete-table'),
+                    classname: 'redactor-table-item-observable',
                     api: 'plugin.table.deleteTable'
-    			}
-			};
+                }
+            };
             var obj = {
                 title: this.lang.get('table')
             };
 
-			var $button = this.toolbar.addButtonBefore('link', 'table', obj);
-			$button.setIcon('<i class="re-icon-table"></i>');
-			$button.setDropdown(dropdown);
+            var $button = this.toolbar.addButtonBefore('link', 'table', obj);
+            $button.setIcon('<i class="re-icon-table"></i>');
+            $button.setDropdown(dropdown);
         },
-		insert: function()
-		{
+        insert: function () {
             var rows = 2;
-			var columns = 3;
-			var $component = this.component.create('table');
+            var columns = 3;
+            var $component = this.component.create('table');
 
-			for (var i = 0; i < rows; i++)
-			{
-			    $component.addRow(columns);
-			}
+            for (var i = 0; i < rows; i++) {
+                $component.addRow(columns);
+            }
 
-			$component =  this.insertion.insertHtml($component);
-			this.caret.setStart($component);
-		},
-        addRowAbove: function()
-        {
+            $component = this.insertion.insertHtml($component);
+            this.caret.setStart($component);
+        },
+        addRowAbove: function () {
             var $component = this._getComponent();
-            if ($component)
-            {
+            if ($component) {
                 var current = this.selection.getCurrent();
                 var $row = $component.addRowTo(current, 'before');
 
                 this.caret.setStart($row);
             }
         },
-        addRowBelow: function()
-        {
+        addRowBelow: function () {
             var $component = this._getComponent();
-            if ($component)
-            {
+            if ($component) {
                 var current = this.selection.getCurrent();
                 var $row = $component.addRowTo(current, 'after');
 
                 this.caret.setStart($row);
             }
         },
-        addColumnLeft: function()
-        {
+        addColumnLeft: function () {
             var $component = this._getComponent();
-            if ($component)
-            {
+            if ($component) {
                 var current = this.selection.getCurrent();
 
                 this.selection.save();
@@ -154,11 +148,9 @@
                 this.selection.restore();
             }
         },
-        addColumnRight: function()
-        {
+        addColumnRight: function () {
             var $component = this._getComponent();
-            if ($component)
-            {
+            if ($component) {
                 var current = this.selection.getCurrent();
 
                 this.selection.save();
@@ -166,41 +158,32 @@
                 this.selection.restore();
             }
         },
-        addHead: function()
-        {
+        addHead: function () {
             var $component = this._getComponent();
-            if ($component)
-            {
+            if ($component) {
                 this.selection.save();
                 $component.addHead();
                 this.selection.restore();
             }
         },
-        deleteHead: function()
-        {
+        deleteHead: function () {
             var $component = this._getComponent();
-            if ($component)
-            {
+            if ($component) {
                 var current = this.selection.getCurrent();
                 var $head = $R.dom(current).closest('thead');
-                if ($head.length !== 0)
-                {
+                if ($head.length !== 0) {
                     $component.removeHead();
                     this.caret.setStart($component);
-                }
-                else
-                {
+                } else {
                     this.selection.save();
                     $component.removeHead();
                     this.selection.restore();
                 }
             }
         },
-        deleteColumn: function()
-        {
+        deleteColumn: function () {
             var $component = this._getComponent();
-            if ($component)
-            {
+            if ($component) {
                 var current = this.selection.getCurrent();
 
                 var $currentCell = $R.dom(current).closest('td, th');
@@ -214,11 +197,9 @@
                 else this.deleteTable();
             }
         },
-        deleteRow: function()
-        {
+        deleteRow: function () {
             var $component = this._getComponent();
-            if ($component)
-            {
+            if ($component) {
                 var current = this.selection.getCurrent();
 
                 var $currentRow = $R.dom(current).closest('tr');
@@ -232,67 +213,53 @@
                 else this.deleteTable();
             }
         },
-        deleteTable: function()
-        {
+        deleteTable: function () {
             var table = this._getTable();
-            if (table)
-            {
+            if (table) {
                 this.component.remove(table);
             }
         },
 
         // private
-        _getTable: function()
-        {
+        _getTable: function () {
             var current = this.selection.getCurrent();
             var data = this.inspector.parse(current);
-            if (data.isTable())
-            {
+            if (data.isTable()) {
                 return data.getTable();
             }
         },
-        _getComponent: function()
-        {
+        _getComponent: function () {
             var current = this.selection.getCurrent();
             var data = this.inspector.parse(current);
-            if (data.isTable())
-            {
+            if (data.isTable()) {
                 var table = data.getTable();
 
                 return this.component.create('table', table);
             }
         },
-        _observeDropdown: function(dropdown)
-        {
+        _observeDropdown: function (dropdown) {
             var table = this._getTable();
             var items = dropdown.getItemsByClass('redactor-table-item-observable');
             var tableItem = dropdown.getItem('insert-table');
-            if (table)
-            {
+            if (table) {
                 this._observeItems(items, 'enable');
                 tableItem.disable();
-            }
-            else
-            {
+            } else {
                 this._observeItems(items, 'disable');
                 tableItem.enable();
             }
         },
-        _observeItems: function(items, type)
-        {
-            for (var i = 0; i < items.length; i++)
-            {
+        _observeItems: function (items, type) {
+            for (var i = 0; i < items.length; i++) {
                 items[i][type]();
             }
         }
     });
 })(Redactor);
-(function($R)
-{
+(function ($R) {
     $R.add('class', 'table.component', {
         mixins: ['dom', 'component'],
-        init: function(app, el)
-        {
+        init: function (app, el) {
             this.app = app;
 
             // init
@@ -300,103 +267,87 @@
         },
 
         // public
-        addHead: function()
-        {
-			this.removeHead();
+        addHead: function () {
+            this.removeHead();
 
-			var columns = this.$element.find('tr').first().children('td, th').length;
-			var $head = $R.dom('<thead>');
+            var columns = this.$element.find('tr').first().children('td, th').length;
+            var $head = $R.dom('<thead>');
             var $row = this._buildRow(columns, '<th>');
 
             $head.append($row);
             this.$element.prepend($head);
         },
-        addRow: function(columns)
-        {
+        addRow: function (columns) {
             var $row = this._buildRow(columns);
             this.$element.append($row);
 
             return $row;
         },
-        addRowTo: function(current, type)
-        {
+        addRowTo: function (current, type) {
             return this._addRowTo(current, type);
         },
-        addColumnTo: function(current, type)
-        {
+        addColumnTo: function (current, type) {
             var $current = $R.dom(current);
             var $currentRow = $current.closest('tr');
             var $currentCell = $current.closest('td, th');
 
             var index = 0;
-            $currentRow.find('td, th').each(function(node, i)
-			{
-				if (node === $currentCell.get()) index = i;
-			});
+            $currentRow.find('td, th').each(function (node, i) {
+                if (node === $currentCell.get()) index = i;
+            });
 
-			this.$element.find('tr').each(function(node)
-			{
-    			var $node = $R.dom(node);
-				var origCell = $node.find('td, th').get(index);
-				var $origCell = $R.dom(origCell);
+            this.$element.find('tr').each(function (node) {
+                var $node = $R.dom(node);
+                var origCell = $node.find('td, th').get(index);
+                var $origCell = $R.dom(origCell);
 
-				var $td = $origCell.clone();
-				$td.html('');
+                var $td = $origCell.clone();
+                $td.html('');
 
-				if (type === 'right') $origCell.after($td);
-				else                  $origCell.before($td);
-			});
+                if (type === 'right') $origCell.after($td);
+                else $origCell.before($td);
+            });
         },
-        removeHead: function()
-        {
-			var $head = this.$element.find('thead');
-			if ($head.length !== 0) $head.remove();
+        removeHead: function () {
+            var $head = this.$element.find('thead');
+            if ($head.length !== 0) $head.remove();
         },
-        removeRow: function(current)
-        {
+        removeRow: function (current) {
             var $current = $R.dom(current);
             var $currentRow = $current.closest('tr');
 
             $currentRow.remove();
         },
-        removeColumn: function(current)
-        {
+        removeColumn: function (current) {
             var $current = $R.dom(current);
             var $currentRow = $current.closest('tr');
             var $currentCell = $current.closest('td, th');
 
             var index = 0;
-            $currentRow.find('td, th').each(function(node, i)
-			{
-				if (node === $currentCell.get()) index = i;
-			});
+            $currentRow.find('td, th').each(function (node, i) {
+                if (node === $currentCell.get()) index = i;
+            });
 
-			this.$element.find('tr').each(function(node)
-			{
-    			var $node = $R.dom(node);
-				var origCell = $node.find('td, th').get(index);
-				var $origCell = $R.dom(origCell);
+            this.$element.find('tr').each(function (node) {
+                var $node = $R.dom(node);
+                var origCell = $node.find('td, th').get(index);
+                var $origCell = $R.dom(origCell);
 
-				$origCell.remove();
-			});
+                $origCell.remove();
+            });
         },
 
         // private
-        _init: function(el)
-        {
+        _init: function (el) {
             var wrapper, element;
-            if (typeof el !== 'undefined')
-            {
+            if (typeof el !== 'undefined') {
                 var $node = $R.dom(el);
                 var node = $node.get();
                 var $figure = $node.closest('figure');
-                if ($figure.length !== 0)
-                {
+                if ($figure.length !== 0) {
                     wrapper = $figure;
                     element = $figure.find('table').get();
-                }
-                else if (node.tagName === 'TABLE')
-                {
+                } else if (node.tagName === 'TABLE') {
                     element = node;
                 }
             }
@@ -405,12 +356,10 @@
             this._buildElement(element);
             this._initWrapper();
         },
-        _addRowTo: function(current, position)
-        {
+        _addRowTo: function (current, position) {
             var $current = $R.dom(current);
             var $currentRow = $current.closest('tr');
-            if ($currentRow.length !== 0)
-            {
+            if ($currentRow.length !== 0) {
                 var columns = $currentRow.children('td, th').length;
                 var $newRow = this._buildRow(columns);
 
@@ -419,13 +368,11 @@
                 return $newRow;
             }
         },
-        _buildRow: function(columns, tag)
-        {
+        _buildRow: function (columns, tag) {
             tag = tag || '<td>';
 
             var $row = $R.dom('<tr>');
-            for (var i = 0; i < columns; i++)
-            {
+            for (var i = 0; i < columns; i++) {
                 var $cell = $R.dom(tag);
                 $cell.attr('contenteditable', true);
 
@@ -434,26 +381,20 @@
 
             return $row;
         },
-        _buildElement: function(node)
-        {
-            if (node)
-            {
+        _buildElement: function (node) {
+            if (node) {
                 this.$element = $R.dom(node);
-            }
-            else
-            {
+            } else {
                 this.$element = $R.dom('<table>');
                 this.append(this.$element);
             }
         },
-        _buildWrapper: function(node)
-        {
+        _buildWrapper: function (node) {
             node = node || '<figure>';
 
             this.parse(node);
         },
-        _initWrapper: function()
-        {
+        _initWrapper: function () {
             this.addClass('redactor-component');
             this.attr({
                 'data-redactor-type': 'table',
@@ -461,8 +402,7 @@
                 'contenteditable': false
             });
 
-            if (this.app.detector.isIe())
-            {
+            if (this.app.detector.isIe()) {
                 this.removeAttr('contenteditable');
             }
         }

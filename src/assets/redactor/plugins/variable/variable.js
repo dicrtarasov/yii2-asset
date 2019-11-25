@@ -1,5 +1,11 @@
-(function($R)
-{
+/*
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 30.04.19 02:39:05
+ */
+
+(function ($R) {
     $R.add('plugin', 'variable', {
         translations: {
             en: {
@@ -11,8 +17,7 @@
         modals: {
             'variable': ''
         },
-        init: function(app)
-        {
+        init: function (app) {
             this.app = app;
             this.lang = app.lang;
             this.opts = app.opts;
@@ -26,17 +31,14 @@
         // messages
         onmodal: {
             variable: {
-                open: function($modal, $form)
-                {
+                open: function ($modal, $form) {
                     this._build($modal);
                 }
             }
         },
-        oncontextbar: function(e, contextbar)
-        {
-            var data = this.inspector.parse(e.target)
-            if (data.isComponentType('variable'))
-            {
+        oncontextbar: function (e, contextbar) {
+            var data = this.inspector.parse(e.target);
+            if (data.isComponentType('variable')) {
                 var node = data.getComponent();
                 var buttons = {
                     "change": {
@@ -58,8 +60,7 @@
         },
 
         // public
-        start: function()
-        {
+        start: function () {
             if (!this.opts.variables) return;
 
             var obj = {
@@ -70,8 +71,7 @@
             var $button = this.toolbar.addButton('variable', obj);
             $button.setIcon('<i class="re-icon-variable"></i>');
         },
-        open: function()
-		{
+        open: function () {
             var options = {
                 title: this.lang.get('variable'),
                 width: '600px',
@@ -80,34 +80,29 @@
 
             this.$currentItem = this._getCurrent();
             this.app.api('module.modal.build', options);
-		},
-		insert: function($item)
-		{
-    		this.app.api('module.modal.close');
+        },
+        insert: function ($item) {
+            this.app.api('module.modal.close');
 
             var type = $item.attr('data-type');
             var $variable = this.component.create('variable');
             $variable.html(type);
 
             this.insertion.insertRaw($variable);
-		},
-        remove: function(node)
-        {
+        },
+        remove: function (node) {
             this.component.remove(node);
         },
 
         // private
-		_getCurrent: function()
-		{
-    		var current = this.selection.getCurrent();
-    		var data = this.inspector.parse(current);
-    		if (data.isComponentType('variable'))
-    		{
-        		return this.component.build(data.getComponent());
-    		}
-		},
-		_build: function($modal)
-		{
+        _getCurrent: function () {
+            var current = this.selection.getCurrent();
+            var data = this.inspector.parse(current);
+            if (data.isComponentType('variable')) {
+                return this.component.build(data.getComponent());
+            }
+        },
+        _build: function ($modal) {
             var $body = $modal.getBody();
             var $label = this._buildLabel();
             var $list = this._buildList();
@@ -117,28 +112,24 @@
             $body.html('');
             $body.append($label);
             $body.append($list);
-		},
-		_buildLabel: function()
-		{
+        },
+        _buildLabel: function () {
             var $label = $R.dom('<label>');
             $label.html(this.lang.parse('## variable-select ##:'));
 
-    		return $label;
-		},
-		_buildList: function()
-		{
-    		var $list = $R.dom('<ul>');
+            return $label;
+        },
+        _buildList: function () {
+            var $list = $R.dom('<ul>');
             $list.addClass('redactor-variables-list');
 
             return $list;
-		},
-		_buildItems: function($list)
-		{
-    		var selectedType = this._getCurrentType();
-    		var items = this.opts.variables;
+        },
+        _buildItems: function ($list) {
+            var selectedType = this._getCurrentType();
+            var items = this.opts.variables;
 
-    		for (var i = 0; i < items.length; i++)
-            {
+            for (var i = 0; i < items.length; i++) {
                 var type = items[i].trim();
                 var $li = $R.dom('<li>');
                 var $item = $R.dom('<span>');
@@ -147,40 +138,34 @@
                 $item.html(type);
                 $item.on('click', this._toggle.bind(this));
 
-                if (selectedType === type)
-                {
+                if (selectedType === type) {
                     $item.addClass('redactor-variables-item-selected');
                 }
 
                 $li.append($item);
                 $list.append($li);
             }
-		},
-		_getCurrentType: function()
-		{
-    		if (this.$currentItem)
-    		{
-        		var variableData = this.$currentItem.getData();
+        },
+        _getCurrentType: function () {
+            if (this.$currentItem) {
+                var variableData = this.$currentItem.getData();
 
-        		return variableData.type;
+                return variableData.type;
             }
 
-    		return false;
-		},
-		_toggle: function(e)
-		{
+            return false;
+        },
+        _toggle: function (e) {
             var $item = $R.dom(e.target);
 
             this.app.api('plugin.variable.insert', $item);
-		}
+        }
     });
 })(Redactor);
-(function($R)
-{
+(function ($R) {
     $R.add('class', 'variable.component', {
         mixins: ['dom', 'component'],
-        init: function(app, el)
-        {
+        init: function (app, el) {
             this.app = app;
             this.utils = app.utils;
 
@@ -188,29 +173,25 @@
             return (el && el.cmnt !== undefined) ? el : this._init(el);
         },
         // public
-        getData: function()
-        {
+        getData: function () {
             return {
                 type: this._getType()
             };
         },
 
         // private
-        _init: function(el)
-        {
+        _init: function (el) {
             el = el || '<span>';
 
             this.parse(el);
             this._initWrapper();
         },
-        _getType: function()
-        {
+        _getType: function () {
             var text = this.text().trim();
 
             return this.utils.removeInvisibleChars(text);
         },
-        _initWrapper: function()
-        {
+        _initWrapper: function () {
             this.addClass('redactor-component');
             this.attr({
                 'data-redactor-type': 'variable',

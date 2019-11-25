@@ -1,20 +1,20 @@
-'use strict';
-
 /*
-jquery-watcher
-Version 0.13 - 12/22/2015
-© 2015 Rick Strahl, West Wind Technologies
-www.west-wind.com
-Licensed under MIT License
-*/
-(function($) {
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 20.05.19 21:05:16
+ */
+
+(function ($) {
+    'use strict';
+
     /* Override jQuery-UI Resizable
-    if (typeof($.fn.resizable) == 'function') {
+    if (typeof($.fn.resizable) === 'function') {
         return;
     }
     */
 
-    $.fn.resizable = function(options) {
+    $.fn.resizable = function (options) {
         let opt = {
             // selector for handle that starts dragging
             handleSelector: null,
@@ -33,7 +33,7 @@ Licensed under MIT License
             touchActionNone: true
         };
 
-        if (typeof options == "object") {
+        if (typeof options === "object") {
             opt = $.extend(opt, options);
         }
 
@@ -50,14 +50,12 @@ Licensed under MIT License
             $el.addClass("resizable");
             $handle.bind('mousedown.rsz touchstart.rsz', startDragging);
 
-            function noop(e)
-            {
+            function noop(e) {
                 e.stopPropagation();
                 e.preventDefault();
             }
 
-            function startDragging(e)
-            {
+            function startDragging(e) {
                 startPos = getMousePos(e);
                 startPos.width = parseInt($el.outerWidth(), 10);
                 startPos.height = parseInt($el.outerHeight(), 10);
@@ -82,8 +80,7 @@ Licensed under MIT License
                 $(document).bind('selectstart.rsz', noop); // disable selection
             }
 
-            function doDrag(e)
-            {
+            function doDrag(e) {
                 // если прошлое событие еще не обработано, то сохраняем и выходим
                 if (doDrag.e) {
                     doDrag.e = e;
@@ -94,7 +91,7 @@ Licensed under MIT License
                 doDrag.e = e;
 
                 // планируем обработку
-                window.requestAnimationFrame(function() {
+                window.requestAnimationFrame(function () {
                     // если нет необработаных событий, то выходим
                     const e = doDrag.e || null;
                     if (!e) {
@@ -108,7 +105,7 @@ Licensed under MIT License
                     const css = {};
 
                     if (opt.resizeWidth) {
-                        css.width = css.minWidth = css.maxWidth = startPos.width + pos.x - startPos.x;;
+                        css.width = css.minWidth = css.maxWidth = startPos.width + pos.x - startPos.x;
                     }
 
                     if (opt.resizeHeight) {
@@ -151,15 +148,17 @@ Licensed under MIT License
             }
 
             function getMousePos(e) {
-                var pos = { x: 0, y: 0, width: 0, height: 0 };
+                var pos = {x: 0, y: 0, width: 0, height: 0};
+
                 if (typeof e.clientX === "number") {
                     pos.x = e.clientX;
                     pos.y = e.clientY;
                 } else if (e.originalEvent.touches) {
                     pos.x = e.originalEvent.touches[0].clientX;
                     pos.y = e.originalEvent.touches[0].clientY;
-                } else
+                } else {
                     return null;
+                }
 
                 return pos;
             }

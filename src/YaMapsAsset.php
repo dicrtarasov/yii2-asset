@@ -1,15 +1,22 @@
 <?php
+/**
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 29.04.19 22:22:14
+ */
+
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
+use function is_array;
 
 /**
  * Яндекс Карты.
  *
  * Для установки параметров в значения по-умолчанию можно наследовать класс.
  *
- * @author Igor (Dicr) Tarasov <develop@dicr.org>
- * @version 2019
  * @link https://tech.yandex.ru/maps/doc/jsapi/2.1/dg/concepts/load-docpage/
  */
 class YaMapsAsset extends AssetBundle
@@ -27,19 +34,19 @@ class YaMapsAsset extends AssetBundle
     public $lang = 'ru_RU';
 
     /** @var string порядок координат: широта, долгота */
-    const COORDORDER_LATLONG = 'latlong';
+    public const COORDORDER_LATLONG = 'latlong';
 
     /** @var string порядок координат: долгота, широта */
-    const COORDORDER_LONGLAT = 'longlat';
+    public const COORDORDER_LONGLAT = 'longlat';
 
     /** @var string порядок координат */
     public $coordorder;
 
     /** @var string режим отладочной версии */
-    const MODE_DEBUG = 'debug';
+    public const MODE_DEBUG = 'debug';
 
     /** @var string режим релиза */
-    const MODE_RELEASE = 'release';
+    public const MODE_RELEASE = 'release';
 
     /** @var string отладочная/релиз-версия */
     public $mode;
@@ -60,11 +67,11 @@ class YaMapsAsset extends AssetBundle
         $path = [];
 
         $this->version = trim($this->version);
-        if (!empty($this->version)) {
+        if (! empty($this->version)) {
             $path[] = $this->version;
         }
 
-        if (!empty($path)) {
+        if (! empty($path)) {
             $js .= '/' . implode($path) . '/';
         }
 
@@ -82,7 +89,7 @@ class YaMapsAsset extends AssetBundle
             }
         }
 
-        if (!empty($query)) {
+        if (! empty($query)) {
             $js .= '?' . http_build_query($query);
         }
 

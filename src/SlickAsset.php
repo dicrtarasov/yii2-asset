@@ -1,14 +1,20 @@
 <?php
+/**
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 21.04.19 07:51:30
+ */
+
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
 /**
- * Slick-Carousel asset.
+ * Ресурсы Slick Carousel.
  *
- * @author Igor (Dicr) Tarasov <develop@dicr.org>
- * @version 2019
  * @link https://kenwheeler.github.io/slick
  */
 class SlickAsset extends AssetBundle

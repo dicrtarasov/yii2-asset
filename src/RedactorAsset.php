@@ -1,16 +1,24 @@
 <?php
+/**
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 27.10.19 03:04:54
+ */
+
+declare(strict_types = 1);
 namespace dicr\asset;
 
+use Yii;
 use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
+use function in_array;
 
 /**
  * Ресурсы редактора.
  *
  * @author Nghia Nguyen <yiidevelop@hotmail.com>
  * @author Igor (Dicr) Tarasov <develop@dicr.org>
- * @since 2.0
- * @version 2019
  */
 class RedactorAsset extends AssetBundle
 {
@@ -40,7 +48,7 @@ class RedactorAsset extends AssetBundle
     public function init()
     {
         // добавляем языковый пакет
-        $this->addLangResources(\Yii::$app->language);
+        $this->addLangResources(Yii::$app->language);
 
         parent::init();
     }
@@ -53,7 +61,7 @@ class RedactorAsset extends AssetBundle
     public function addLangResources(string $lang)
     {
         $langAsset = 'lang/' . $lang . '.js';
-        if (!in_array($langAsset, $this->js) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $langAsset)) {
+        if (! in_array($langAsset, $this->js) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $langAsset)) {
             $this->js[] = $langAsset;
         }
     }
@@ -67,12 +75,12 @@ class RedactorAsset extends AssetBundle
     {
         foreach ($plugins as $plugin) {
             $js = 'plugins/' . $plugin . '/' . $plugin . '.js';
-            if (!in_array($js, $this->js) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $js)) {
+            if (! in_array($js, $this->js) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $js)) {
                 $this->js[] = $js;
             }
 
             $css = 'plugins/' . $plugin . '/' . $plugin . '.css';
-            if (!in_array($css, $this->css) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $css)) {
+            if (! in_array($css, $this->css) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $css)) {
                 $this->css[] = $css;
             }
         }

@@ -1,4 +1,12 @@
 <?php
+/**
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 20.05.19 05:29:34
+ */
+
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -6,14 +14,12 @@ use yii\web\AssetBundle;
 /**
  * ReactJs Asset
  *
- * @author Igor (Dicr) Tarasov <develop@dicr.org>
- * @version 2019
  * @link https://reactjs.org
  */
 class ReactAsset extends AssetBundle
 {
     /** @var array */
-    const JS = [
+    public const JS = [
         'prod' => [
             ['https://unpkg.com/react/umd/react.production.min.js', 'crossorigin' => true],
             ['https://unpkg.com/react-dom/umd/react-dom.production.min.js', 'crossorigin' => true]

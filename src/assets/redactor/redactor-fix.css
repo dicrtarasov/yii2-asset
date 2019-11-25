@@ -1,3 +1,10 @@
+/*
+ * @copyright 2019-2019 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 11.05.19 12:29:46
+ */
+
 #redactor-filemanager-list a.redactor-file-manager-link {
     display: flex;
     flex-flow: row nowrap;
@@ -23,7 +30,7 @@
 
 .re-button-tooltip {
     color: #fff !important;
-    font-family: sans-serif !importat;
+    font-family: sans-serif ! importat;
     font-weight: bold !important;
 }
 
