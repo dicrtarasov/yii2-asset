@@ -58,9 +58,13 @@ class BaseResAsset extends AssetBundle
         $asset->publish($am);
 
         $key = static::class . '-' . md5(Json::encode($config));
-        $view->getAssetManager()->bundles[$key] = $asset;
-        $view->registerAssetBundle($key);
+        $assetManager = $view->getAssetManager();
+        if (is_array($assetManager->bundles)) {
+            /** @noinspection OffsetOperationsInspection */
+            $assetManager->bundles[$key] = $asset;
+        }
 
+        $view->registerAssetBundle($key);
         return $asset;
     }
 }

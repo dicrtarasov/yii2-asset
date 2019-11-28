@@ -31,23 +31,26 @@
         global.deparam = deparam(global.jQuery); // assume jQuery is in global namespace
     }
 })(function ($) {
+    "use strict";
+
     var deparam = function (params, coerce) {
         params = !params ? '' : String(params);
-        var obj = {},
-            coerceTypes = {'true': !0, 'false': !1, 'null': null};
+
+        var obj = {};
+        var coerceTypes = {'true': !0, 'false': !1, 'null': null};
 
         // Iterate over all name=value pairs.
         params.replace(/\+/g, ' ').split('&').forEach(function (v) {
-            var param = v.split('='),
-                key = decodeURIComponent(param[0]),
-                val,
-                cur = obj,
-                i = 0,
+            var param = v.split('=');
+            var key = decodeURIComponent(param[0]);
+            var val;
+            var cur = obj;
+            var i = 0;
 
-                // If key is more complex than 'foo', like 'a[]' or 'a[b][c]', split it
-                // into its component parts.
-                keys = key.split(']['),
-                keysLast = keys.length - 1;
+            // If key is more complex than 'foo', like 'a[]' or 'a[b][c]', split it
+            // into its component parts.
+            var keys = key.split('][');
+            var keysLast = keys.length - 1;
 
             // If the first keys part contains [ and the last ends with ], then []
             // are correctly balanced.
@@ -113,16 +116,16 @@
 
             } else if (key) {
                 // No value was defined, so set something meaningful.
-                obj[key] = coerce
-                    ? undefined
-                    : '';
+                obj[key] = coerce ? undefined : '';
             }
         });
 
         return obj;
     };
+
     if ($) {
         $.prototype.deparam = $.deparam = deparam;
     }
+
     return deparam;
 });

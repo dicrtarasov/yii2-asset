@@ -3,7 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="a2f9df5d-89de-4689-ad8a-aba457d943d4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/YaMapsAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/YaMapsAsset.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BaseResAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseResAsset.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/deparam/jquery.deparam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/deparam/jquery.deparam.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -159,6 +160,7 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
     <MESSAGE value="refactor by PHPStorm" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor by PHPStorm" />
+    <MESSAGE value="mix yamapsasset" />
+    <option name="LAST_COMMIT_MESSAGE" value="mix yamapsasset" />
   </component>
 </project>
