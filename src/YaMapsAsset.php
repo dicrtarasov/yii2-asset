@@ -83,7 +83,7 @@ class YaMapsAsset extends AssetBundle
         $query = [];
 
         foreach (['apikey', 'lang', 'coordorder', 'mode', 'load'] as $field) {
-            $this->{$field} = trim($this->{$field});
+            $this->{$field} = trim($this->{$field} ?? '');
             if ($this->{$field} !== '') {
                 $query[$field] = $this->{$field};
             }

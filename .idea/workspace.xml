@@ -2,87 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2f9df5d-89de-4689-ad8a-aba457d943d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AutocompleteAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutocompleteAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BabelAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/BabelAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BaseResAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseResAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DeparamAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeparamAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FancyboxAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/FancyboxAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FontAwesomeAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/FontAwesomeAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FontOpenSans.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/FontOpenSans.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InputMaskAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputMaskAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MomentJsAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/MomentJsAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MultiselectAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/MultiselectAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ReactAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReactAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ReactBootstrapAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReactBootstrapAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RedactorAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/RedactorAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ResizableAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ResizableAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SlickAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SlickAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SummernoteAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SummernoteAsset.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/YaMapsAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/YaMapsAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/autocomplete/autocomplete.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/autocomplete/autocomplete.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/deparam/jquery.deparam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/deparam/jquery.deparam.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/ar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/cs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/da.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/de.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/en.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/lang/en.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/es.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/fa.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/fi.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/fr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/he.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/hu.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/it.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/ja.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/ko.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/nl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/no.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/pl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/pt_br.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/ru.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/lang/ru.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/sk.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/sl.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/sv.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/tr.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/zh_cn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/lang/zh_tw.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/alignment/alignment.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/alignment/alignment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/beyondgrammar/beyondgrammar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/beyondgrammar/beyondgrammar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/clips/clips.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/clips/clips.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/clips/clips.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/clips/clips.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/counter/counter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/counter/counter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/definedlinks/definedlinks.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/definedlinks/definedlinks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/filemanager/filemanager.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/filemanager/filemanager.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/filemanager/filemanager.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/filemanager/filemanager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/fontcolor/fontcolor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/fontcolor/fontcolor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/fontfamily/fontfamily.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/fontfamily/fontfamily.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/fontsize/fontsize.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/fontsize/fontsize.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/fullscreen/fullscreen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/fullscreen/fullscreen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/handle/handle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/handle/handle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/handle/handle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/handle/handle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/imagemanager/imagemanager.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/imagemanager/imagemanager.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/inlinestyle/inlinestyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/inlinestyle/inlinestyle.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/inlinestyle/inlinestyle.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/inlinestyle/inlinestyle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/limiter/limiter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/limiter/limiter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/pagebreak/pagebreak.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/pagebreak/pagebreak.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/pagebreak/pagebreak.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/pagebreak/pagebreak.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/properties/properties.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/properties/properties.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/specialchars/specialchars.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/specialchars/specialchars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/table/table.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/table/table.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/textdirection/textdirection.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/textdirection/textdirection.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/textexpander/textexpander.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/textexpander/textexpander.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/variable/variable.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/variable/variable.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/variable/variable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/variable/variable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/video/video.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/video/video.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/plugins/widget/widget.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/plugins/widget/widget.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/redactor-fix.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/redactor-fix.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/redactor.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/redactor.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/redactor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/redactor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/redactor/redactor.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/redactor/redactor.min.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/resizable/jquery.resizable.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/resizable/jquery.resizable.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/resizable/jquery.resizable.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/resizable/jquery.resizable.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -90,7 +11,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <phar pharPath="$PROJECT_DIR$/../../composer.phar" interpreterId="57d893dd-2dc1-4275-aba2-b2c15e401c76" />
@@ -115,6 +36,12 @@
   </component>
   <component name="Git.Settings">
     <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
@@ -176,7 +103,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.jscs" value="/usr/bin/node" />
     <property name="node.js.path.for.package.standard" value="project" />
@@ -189,6 +116,11 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
     <property name="settings.editor.selected.configurable" value="copyright.profiles" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -214,7 +146,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -224,5 +158,7 @@
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
+    <MESSAGE value="refactor by PHPStorm" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor by PHPStorm" />
   </component>
 </project>
