@@ -6,7 +6,8 @@
  * @version 29.04.19 22:22:14
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -67,11 +68,11 @@ class YaMapsAsset extends AssetBundle
         $path = [];
 
         $this->version = trim($this->version);
-        if (! empty($this->version)) {
+        if (!empty($this->version)) {
             $path[] = $this->version;
         }
 
-        if (! empty($path)) {
+        if (!empty($path)) {
             $js .= '/' . implode($path) . '/';
         }
 
@@ -89,7 +90,7 @@ class YaMapsAsset extends AssetBundle
             }
         }
 
-        if (! empty($query)) {
+        if (!empty($query)) {
             $js .= '?' . http_build_query($query);
         }
 

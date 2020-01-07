@@ -6,7 +6,8 @@
  * @version 20.10.19 10:11:43
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace dicr\asset;
 
 use yii\web\AssetBundle;

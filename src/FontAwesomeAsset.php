@@ -7,6 +7,7 @@
  */
 
 declare(strict_types = 1);
+
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -20,6 +21,10 @@ class FontAwesomeAsset extends AssetBundle
 {
     /** @var string[] */
     public $css = [
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'
+        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css',
+    ];
+
+    public $js = [
+        //'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js'
     ];
 }

@@ -6,9 +6,11 @@
  * @version 21.06.19 18:43:03
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace dicr\asset;
 
+use yii\base\InvalidConfigException;
 use yii\helpers\Json;
 use yii\web\AssetBundle;
 use yii\web\View;
@@ -35,7 +37,7 @@ class BaseResAsset extends AssetBundle
         foreach (['css', 'js', 'depends'] as $field) {
             if (empty($this->{$field})) {
                 $this->{$field} = [];
-            } elseif (! is_array($this->{$field})) {
+            } elseif (!is_array($this->{$field})) {
                 $this->{$field} = [$this->{$field}];
             }
         }
@@ -46,10 +48,11 @@ class BaseResAsset extends AssetBundle
     /**
      * Комбинированный метод для создания и регистрации
      *
-     * @param \yii\web\View $view
+     * @param View $view
      * @param array $config
      * @return static
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidConfigException
+     * @noinspection PhpUnused
      */
     public static function registerConfig(View $view, array $config)
     {

@@ -6,7 +6,8 @@
  * @version 06.04.19 03:38:41
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -69,19 +70,19 @@ class SummernoteAsset extends AssetBundle
      */
     private function addResources(array $res)
     {
-        if (! empty($res['css'])) {
+        if (!empty($res['css'])) {
             foreach ($res['css'] as $css) {
                 $this->css[] = $css;
             }
         }
 
-        if (! empty($res['js'])) {
+        if (!empty($res['js'])) {
             foreach ($res['js'] as $js) {
                 $this->js[] = $js;
             }
         }
 
-        if (! empty($res['depends'])) {
+        if (!empty($res['depends'])) {
             foreach ($res['depends'] as $deps) {
                 $this->depends[] = $deps;
             }

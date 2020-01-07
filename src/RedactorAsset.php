@@ -6,7 +6,8 @@
  * @version 27.10.19 03:04:54
  */
 
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace dicr\asset;
 
 use Yii;
@@ -61,7 +62,7 @@ class RedactorAsset extends AssetBundle
     public function addLangResources(string $lang)
     {
         $langAsset = 'lang/' . $lang . '.js';
-        if (! in_array($langAsset, $this->js) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $langAsset)) {
+        if (!in_array($langAsset, $this->js) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $langAsset)) {
             $this->js[] = $langAsset;
         }
     }
@@ -75,12 +76,12 @@ class RedactorAsset extends AssetBundle
     {
         foreach ($plugins as $plugin) {
             $js = 'plugins/' . $plugin . '/' . $plugin . '.js';
-            if (! in_array($js, $this->js) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $js)) {
+            if (!in_array($js, $this->js) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $js)) {
                 $this->js[] = $js;
             }
 
             $css = 'plugins/' . $plugin . '/' . $plugin . '.css';
-            if (! in_array($css, $this->css) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $css)) {
+            if (!in_array($css, $this->css) && file_exists($this->sourcePath . DIRECTORY_SEPARATOR . $css)) {
                 $this->css[] = $css;
             }
         }
