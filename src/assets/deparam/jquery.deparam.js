@@ -1,8 +1,8 @@
 /*
- * @copyright 2019-2019 Dicr http://dicr.org
+ * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 28.12.18 18:10:02
+ * @version 23.02.20 09:24:30
  */
 
 (function (deparam) {
@@ -23,7 +23,9 @@
     } else {
         var global;
 
+        // noinspection UnusedCatchParameterJS
         try {
+            // noinspection DynamicallyGeneratedCodeJS
             global = eval('this'); // best cross-browser way to determine global for < ES5
         } catch (e) {
             global = window; // fails only if browser (https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives)
@@ -34,7 +36,7 @@
     "use strict";
 
     var deparam = function (params, coerce) {
-        params = !params ? '' : String(params);
+        params = params ? String(params) : '';
 
         var obj = {};
         var coerceTypes = {'true': !0, 'false': !1, 'null': null};

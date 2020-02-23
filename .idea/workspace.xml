@@ -2,37 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2f9df5d-89de-4689-ad8a-aba457d943d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.buildpath" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/copyright/dicr.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copyright/dicr.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/JuiAsset.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/.jsdtscope" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.php.composer.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.php.core.prefs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.common.project.facet.core.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.jsdt.ui.superType.container" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.jsdt.ui.superType.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.wst.validation.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/yii2-asset.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/yii2-asset.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/AutocompleteAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/AutocompleteAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BabelAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/BabelAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BaseResAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/BaseResAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DeparamAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DeparamAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FancyboxAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/FancyboxAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FontAwesomeAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/FontAwesomeAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/FontOpenSans.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/FontOpenSans.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/InputMaskAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputMaskAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MomentJsAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/MomentJsAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MultiselectAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/MultiselectAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ReactAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReactAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ReactBootstrapAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ReactBootstrapAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/RedactorAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/RedactorAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ResizableAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/ResizableAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SlickAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SlickAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SummernoteAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/SummernoteAsset.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/YaMapsAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/YaMapsAsset.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/deparam/jquery.deparam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/deparam/jquery.deparam.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +126,7 @@
     <property name="node.js.selected.package.stylelint" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript.Linters.JSHint" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.JSON" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -186,6 +163,9 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="UpdateCopyrightCheckinHandler">
+    <option name="UPDATE_COPYRIGHT" value="true" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -201,11 +181,16 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="CHECK_NEW_TODO" value="false" />
     <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
+    <option name="FORCE_NON_EMPTY_COMMENT" value="true" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="refactor by PHPStorm" />
     <MESSAGE value="mix yamapsasset" />
     <option name="LAST_COMMIT_MESSAGE" value="mix yamapsasset" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="427" y="284" width="502" height="265" key="ComposerInitDialogKey" timestamp="1578359855769">
@@ -216,9 +201,10 @@
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="461" y="160" width="424" height="520" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1578359853093" />
-    <state x="172" y="31" width="1022" height="737" key="SettingsEditor" timestamp="1578360277089">
-      <screen x="0" y="27" width="1366" height="741" />
+    <state x="201" y="31" width="1022" height="737" key="SettingsEditor" timestamp="1582431506965">
+      <screen x="0" y="27" width="1600" height="873" />
     </state>
     <state x="172" y="31" width="1022" height="737" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1578360277089" />
+    <state x="201" y="31" key="SettingsEditor/0.27.1600.873@0.27.1600.873" timestamp="1582431506965" />
   </component>
 </project>

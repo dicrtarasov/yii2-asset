@@ -3,7 +3,7 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 23.02.20 09:20:00
+ * @version 23.02.20 09:15:17
  */
 
 declare(strict_types = 1);
@@ -14,15 +14,21 @@ use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
 /**
- * RobinHerbots Inputmask
+ * Внешний хостинг JqueryUI.
  *
- * @link https://github.com/RobinHerbots/Inputmask
+ * @package dicr\asset
+ * @noinspection PhpUnused
  */
-class InputMaskAsset extends AssetBundle
+class JuiAsset extends AssetBundle
 {
     /** @var string[] */
+    public $css = [
+        'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css'
+    ];
+
+    /** @var string[] */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.6/jquery.inputmask.bundle.min.js'
+        'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'
     ];
 
     /** @var string[] */
