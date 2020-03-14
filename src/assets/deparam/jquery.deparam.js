@@ -2,7 +2,7 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 23.02.20 09:24:30
+ * @version 14.03.20 07:41:31
  */
 
 (function (deparam) {
@@ -21,16 +21,7 @@
             return deparam(jquery);
         });
     } else {
-        var global;
-
-        // noinspection UnusedCatchParameterJS
-        try {
-            // noinspection DynamicallyGeneratedCodeJS
-            global = eval('this'); // best cross-browser way to determine global for < ES5
-        } catch (e) {
-            global = window; // fails only if browser (https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives)
-        }
-        global.deparam = deparam(global.jQuery); // assume jQuery is in global namespace
+        window.deparam = deparam(window.jQuery); // assume jQuery is in global namespace
     }
 })(function ($) {
     "use strict";

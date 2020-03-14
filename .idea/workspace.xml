@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a2f9df5d-89de-4689-ad8a-aba457d943d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/JuiAsset.php" afterDir="false" />
+    <list default="true" id="a2f9df5d-89de-4689-ad8a-aba457d943d4" name="Default Changelist" comment="JuiAsset">
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/yii2-asset.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/yii2-asset.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/InputMaskAsset.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/InputMaskAsset.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/assets/deparam/jquery.deparam.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/deparam/jquery.deparam.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,10 +120,10 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="javascript.nodejs.core.library.configured.version" value="10.16.3" />
@@ -133,18 +146,6 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
   <component name="SvnConfiguration">
     <configuration useDefault="false">$USER_HOME$/.subversion</configuration>
   </component>
@@ -161,7 +162,7 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="UpdateCopyrightCheckinHandler">
     <option name="UPDATE_COPYRIGHT" value="true" />
@@ -171,13 +172,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -188,7 +188,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="refactor by PHPStorm" />
     <MESSAGE value="mix yamapsasset" />
-    <option name="LAST_COMMIT_MESSAGE" value="mix yamapsasset" />
+    <MESSAGE value="JuiAsset" />
+    <option name="LAST_COMMIT_MESSAGE" value="JuiAsset" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
@@ -206,5 +207,13 @@
     </state>
     <state x="172" y="31" width="1022" height="737" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1578360277089" />
     <state x="201" y="31" key="SettingsEditor/0.27.1600.873@0.27.1600.873" timestamp="1582431506965" />
+    <state x="395" y="199" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1582432015847">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="395" y="199" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1600.873@0.27.1600.873" timestamp="1582432015847" />
+    <state x="572" y="306" width="455" height="322" key="git4idea.ui.GitTagDialog" timestamp="1582432008275">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="572" y="306" width="455" height="322" key="git4idea.ui.GitTagDialog/0.27.1600.873@0.27.1600.873" timestamp="1582432008275" />
   </component>
 </project>
