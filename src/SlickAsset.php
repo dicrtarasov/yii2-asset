@@ -20,10 +20,15 @@ use yii\web\JqueryAsset;
  */
 class SlickAsset extends AssetBundle
 {
+    /** @var string  */
+    public const CSS_THEME = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css';
+
+    /** @var bool включать тему */
+    public $withTheme = false;
+
     /** @var string[] */
     public $css = [
         'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css',
-        //'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css'
     ];
 
     /** @var string[] */
@@ -35,4 +40,16 @@ class SlickAsset extends AssetBundle
     public $depends = [
         JqueryAsset::class
     ];
+
+    /**
+     * @inheritDoc
+     */
+    public function init()
+    {
+        if ($this->withTheme) {
+            $this->css[] = self::CSS_THEME;
+        }
+
+        parent::init();
+    }
 }
