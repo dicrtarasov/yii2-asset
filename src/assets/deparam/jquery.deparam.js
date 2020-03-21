@@ -2,14 +2,16 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 14.03.20 07:41:31
+ * @version 21.03.20 08:12:30
  */
 
 (function (deparam) {
     "use strict";
 
     if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
+        // noinspection UnusedCatchParameterJS
         try {
+            // noinspection ES6ConvertVarToLetConst
             var jquery = require('jquery');
         } catch (e) {
             // noop
@@ -21,7 +23,7 @@
             return deparam(jquery);
         });
     } else {
-        window.deparam = deparam(window.jQuery); // assume jQuery is in global namespace
+        window.deparam = deparam($); // assume jQuery is in global namespace
     }
 })(function ($) {
     "use strict";
@@ -33,6 +35,7 @@
         var coerceTypes = {'true': !0, 'false': !1, 'null': null};
 
         // Iterate over all name=value pairs.
+        // noinspection OverlyComplexFunctionJS
         params.replace(/\+/g, ' ').split('&').forEach(function (v) {
             var param = v.split('=');
             var key = decodeURIComponent(param[0]);
@@ -69,8 +72,7 @@
                 if (coerce) {
                     val = val && !isNaN(val) && ((+val + '') === val) ? +val        // number
                         : val === 'undefined' ? undefined         // undefined
-                            : coerceTypes[val] !== undefined ? coerceTypes[val] // true, false, null
-                                : val;                                                          // string
+                            : coerceTypes[val] === undefined ? val : coerceTypes[val];                                                          // string
                 }
 
                 if (keysLast) {
@@ -85,7 +87,8 @@
                     // * Rinse & repeat.
                     for (; i <= keysLast; i++) {
                         key = keys[i] === '' ? cur.length : keys[i];
-                        cur = cur[key] = i < keysLast ? cur[key] || (keys[i + 1] ? {} : []) : val;
+                        // noinspection NestedAssignmentJS,AssignmentResultUsedJS
+                        cur = cur[key] = i < keysLast ? (cur[key] || (keys[i + 1] ? {} : [])) : val;
                     }
 
                 } else {
