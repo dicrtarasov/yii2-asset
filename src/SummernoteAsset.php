@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright 2019-2019 Dicr http://dicr.org
+ * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 06.04.19 03:38:41
+ * @version 15.06.20 18:06:02
  */
 
 declare(strict_types=1);
@@ -21,10 +21,11 @@ class SummernoteAsset extends AssetBundle
     /** @var array[] конфиг для Bootstrap 3.x */
     public const BS3 = [
         'css' => [
-            'http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.css'
+            'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css'
         ],
         'js' => [
-            'http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote.js'
+            'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ru-RU.min.js'
         ],
         'depends' => [
             'yii\bootstrap\BootstrapAsset'
@@ -34,10 +35,10 @@ class SummernoteAsset extends AssetBundle
     /** @var array[] конфиг для Bootstrap 4.x */
     public const BS4 = [
         'css' => [
-            'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css'
+            'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css'
         ],
         'js' => [
-            'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.min.js'
+            'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js'
         ],
         'depends' => [
             'yii\bootstrap4\BootstrapAsset'
@@ -50,13 +51,12 @@ class SummernoteAsset extends AssetBundle
     ];
 
     /**
-     * {@inheritDoc}
-     * @see \yii\web\AssetBundle::init()
+     * @inheritDoc
      */
     public function init()
     {
-        // определяем верси Bootstrap
-        if (class_exists('yii\bootstrap4\BootstrapAsset', true)) {
+        // определяем версии Bootstrap
+        if (class_exists('yii\bootstrap4\BootstrapAsset')) {
             $this->addResources(self::BS4);
         } else {
             $this->addResources(self::BS3);

@@ -1,9 +1,9 @@
 <?php
 /**
- * @copyright 2019-2019 Dicr http://dicr.org
+ * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 06.10.19 08:18:36
+ * @version 15.06.20 18:07:01
  */
 
 declare(strict_types=1);
@@ -14,7 +14,7 @@ use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
 /**
- * Ресурсы автоподсказки.
+ * Ресурсы авто-дополнения.
  */
 class AutocompleteAsset extends AssetBundle
 {
@@ -23,7 +23,7 @@ class AutocompleteAsset extends AssetBundle
 
     /** @var string[] */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.10/jquery.autocomplete.min.js'
+        'https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.11/jquery.autocomplete.min.js'
     ];
 
     /** @var string[] */

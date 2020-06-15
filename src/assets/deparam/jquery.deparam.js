@@ -2,51 +2,58 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 21.03.20 08:12:30
+ * @version 15.06.20 18:09:41
  */
 
 (function (deparam) {
     "use strict";
 
+    // noinspection JSUnresolvedVariable
     if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
         // noinspection UnusedCatchParameterJS
         try {
-            // noinspection ES6ConvertVarToLetConst
+            // noinspection ES6ConvertVarToLetConst,JSUnresolvedFunction,NpmUsedModulesInstalled
             var jquery = require('jquery');
         } catch (e) {
             // noop
         }
 
+        // noinspection JSUnresolvedVariable
         module.exports = deparam(jquery);
-    } else if (typeof define === 'function' && define.amd) {
-        define(['jquery'], function (jquery) {
-            return deparam(jquery);
-        });
     } else {
-        window.deparam = deparam($); // assume jQuery is in global namespace
+        // noinspection JSUnresolvedVariable
+        if (typeof define === 'function' && define.amd) {
+            // noinspection JSUnresolvedFunction
+            define(['jquery'], function (jquery) {
+                return deparam(jquery);
+            });
+        } else {
+            window.deparam = deparam($); // assume jQuery is in global namespace
+        }
     }
 })(function ($) {
     "use strict";
 
-    var deparam = function (params, coerce) {
+    const deparam = function (params, coerce) {
+        // noinspection AssignmentToFunctionParameterJS
         params = params ? String(params) : '';
 
-        var obj = {};
-        var coerceTypes = {'true': !0, 'false': !1, 'null': null};
+        const obj = {};
+        const coerceTypes = {'true': !0, 'false': !1, 'null': null};
 
         // Iterate over all name=value pairs.
         // noinspection OverlyComplexFunctionJS
         params.replace(/\+/g, ' ').split('&').forEach(function (v) {
-            var param = v.split('=');
-            var key = decodeURIComponent(param[0]);
-            var val;
-            var cur = obj;
-            var i = 0;
+            const param = v.split('=');
+            let key = decodeURIComponent(param[0]);
+            let val;
+            let cur = obj;
+            let i = 0;
 
             // If key is more complex than 'foo', like 'a[]' or 'a[b][c]', split it
             // into its component parts.
-            var keys = key.split('][');
-            var keysLast = keys.length - 1;
+            let keys = key.split('][');
+            let keysLast = keys.length - 1;
 
             // If the first keys part contains [ and the last ends with ], then []
             // are correctly balanced.
@@ -120,7 +127,8 @@
     };
 
     if ($) {
-        $.prototype.deparam = $.deparam = deparam;
+        // noinspection JSUnusedGlobalSymbols
+        $.prototype.deparam = deparam;
     }
 
     return deparam;

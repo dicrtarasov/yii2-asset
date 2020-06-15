@@ -1,8 +1,8 @@
 /*
- * @copyright 2019-2019 Dicr http://dicr.org
+ * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 20.05.19 21:05:16
+ * @version 15.06.20 18:09:41
  */
 
 (function ($) {
@@ -37,8 +37,8 @@
             opt = $.extend(opt, options);
         }
 
-        return this.each(function () {
-            var startPos, startTransition;
+        return this.each(function (events, handler) {
+            let startPos, startTransition;
 
             const $el = $(this);
             const $handle = opt.handleSelector ? $(opt.handleSelector) : $el;
@@ -48,14 +48,16 @@
             }
 
             $el.addClass("resizable");
-            $handle.bind('mousedown.rsz touchstart.rsz', startDragging);
+            $handle.on('mousedown.rsz touchstart.rsz', startDragging);
 
-            function noop(e) {
+            function noop(e)
+            {
                 e.stopPropagation();
                 e.preventDefault();
             }
 
-            function startDragging(e) {
+            function startDragging(e)
+            {
                 startPos = getMousePos(e);
                 startPos.width = parseInt($el.outerWidth(), 10);
                 startPos.height = parseInt($el.outerHeight(), 10);
@@ -69,18 +71,20 @@
 
                 opt.dragFunc = doDrag;
 
-                $(document).bind('mousemove.rsz', opt.dragFunc);
-                $(document).bind('mouseup.rsz', stopDragging);
+                // noinspection JSCheckFunctionSignatures
+                $(document).on('mousemove.rsz', opt.dragFunc);
+                $(document).on('mouseup.rsz', stopDragging);
 
                 if (window.Touch || navigator.maxTouchPoints) {
-                    $(document).bind('touchmove.rsz', opt.dragFunc);
-                    $(document).bind('touchend.rsz', stopDragging);
+                    $(document).on('touchmove.rsz', opt.dragFunc);
+                    $(document).on('touchend.rsz', stopDragging);
                 }
 
-                $(document).bind('selectstart.rsz', noop); // disable selection
+                $(document).on('selectstart.rsz', noop); // disable selection
             }
 
-            function doDrag(e) {
+            function doDrag(e)
+            {
                 // если прошлое событие еще не обработано, то сохраняем и выходим
                 if (doDrag.e) {
                     doDrag.e = e;
@@ -92,7 +96,7 @@
 
                 // планируем обработку
                 window.requestAnimationFrame(function () {
-                    // если нет необработаных событий, то выходим
+                    // если нет необработанных событий, то выходим
                     const e = doDrag.e || null;
                     if (!e) {
                         return;
@@ -105,10 +109,12 @@
                     const css = {};
 
                     if (opt.resizeWidth) {
+                        // noinspection NestedAssignmentJS,JSUnusedGlobalSymbols,AssignmentResultUsedJS
                         css.width = css.minWidth = css.maxWidth = startPos.width + pos.x - startPos.x;
                     }
 
                     if (opt.resizeHeight) {
+                        // noinspection NestedAssignmentJS,AssignmentResultUsedJS,JSUnusedGlobalSymbols
                         css.height = css.minHeight = css.maxHeight = startPos.height + pos.y - startPos.y;
                     }
 
@@ -116,26 +122,27 @@
                         $el.css(css);
                     }
 
-                    // обрабочик пользователя
+                    // обработчик пользователя
                     if (opt.onDrag) {
                         opt.onDrag(e, $el, opt);
                     }
                 });
             }
 
-            function stopDragging(e) {
+            function stopDragging(e)
+            {
                 e.stopPropagation();
                 e.preventDefault();
 
-                $(document).unbind('mousemove.rsz', opt.dragFunc);
-                $(document).unbind('mouseup.rsz', stopDragging);
+                $(document).off('mousemove.rsz', opt.dragFunc);
+                $(document).off('mouseup.rsz', stopDragging);
 
                 if (window.Touch || navigator.maxTouchPoints) {
-                    $(document).unbind('touchmove.rsz', opt.dragFunc);
-                    $(document).unbind('touchend.rsz', stopDragging);
+                    $(document).off('touchmove.rsz', opt.dragFunc);
+                    $(document).off('touchend.rsz', stopDragging);
                 }
 
-                $(document).unbind('selectstart.rsz', noop);
+                $(document).off('selectstart.rsz', noop);
 
                 // reset changed values
                 $el.css("transition", startTransition);
@@ -147,8 +154,9 @@
                 return false;
             }
 
-            function getMousePos(e) {
-                var pos = {x: 0, y: 0, width: 0, height: 0};
+            function getMousePos(e)
+            {
+                const pos = {x: 0, y: 0, width: 0, height: 0};
 
                 if (typeof e.clientX === "number") {
                     pos.x = e.clientX;
