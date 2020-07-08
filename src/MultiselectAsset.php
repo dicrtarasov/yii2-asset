@@ -1,13 +1,12 @@
 <?php
 /**
- * @copyright 2019-2019 Dicr http://dicr.org
+ * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 20.10.19 10:11:43
+ * @version 08.07.20 06:14:43
  */
 
 declare(strict_types=1);
-
 namespace dicr\asset;
 
 use yii\web\AssetBundle;

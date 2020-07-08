@@ -3,11 +3,10 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 15.06.20 17:51:19
+ * @version 08.07.20 06:14:34
  */
 
 declare(strict_types = 1);
-
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -16,7 +15,6 @@ use yii\web\JqueryAsset;
 /**
  * Внешний хостинг JqueryUI.
  *
- * @package dicr\asset
  * @noinspection PhpUnused
  */
 class JuiAsset extends AssetBundle

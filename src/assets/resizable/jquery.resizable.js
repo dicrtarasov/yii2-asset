@@ -2,7 +2,7 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 15.06.20 18:09:41
+ * @version 08.07.20 06:23:05
  */
 
 (function ($) {
@@ -37,7 +37,7 @@
             opt = $.extend(opt, options);
         }
 
-        return this.each(function (events, handler) {
+        return this.each(function () {
             let startPos, startTransition;
 
             const $el = $(this);
@@ -48,6 +48,7 @@
             }
 
             $el.addClass("resizable");
+            // noinspection JSCheckFunctionSignatures
             $handle.on('mousedown.rsz touchstart.rsz', startDragging);
 
             function noop(e)
@@ -72,15 +73,15 @@
                 opt.dragFunc = doDrag;
 
                 // noinspection JSCheckFunctionSignatures
-                $(document).on('mousemove.rsz', opt.dragFunc);
-                $(document).on('mouseup.rsz', stopDragging);
+                $(window.document).on('mousemove.rsz', opt.dragFunc);
+                $(window.document).on('mouseup.rsz', stopDragging);
 
                 if (window.Touch || navigator.maxTouchPoints) {
-                    $(document).on('touchmove.rsz', opt.dragFunc);
-                    $(document).on('touchend.rsz', stopDragging);
+                    $(window.document).on('touchmove.rsz', opt.dragFunc);
+                    $(window.document).on('touchend.rsz', stopDragging);
                 }
 
-                $(document).on('selectstart.rsz', noop); // disable selection
+                $(window.document).on('selectstart.rsz', noop); // disable selection
             }
 
             function doDrag(e)
@@ -134,15 +135,7 @@
                 e.stopPropagation();
                 e.preventDefault();
 
-                $(document).off('mousemove.rsz', opt.dragFunc);
-                $(document).off('mouseup.rsz', stopDragging);
-
-                if (window.Touch || navigator.maxTouchPoints) {
-                    $(document).off('touchmove.rsz', opt.dragFunc);
-                    $(document).off('touchend.rsz', stopDragging);
-                }
-
-                $(document).off('selectstart.rsz', noop);
+                $(window.document).off('.rsz');
 
                 // reset changed values
                 $el.css("transition", startTransition);

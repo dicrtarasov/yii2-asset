@@ -1,13 +1,12 @@
 <?php
 /**
- * @copyright 2019-2019 Dicr http://dicr.org
+ * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 27.10.19 03:04:54
+ * @version 08.07.20 06:14:58
  */
 
 declare(strict_types=1);
-
 namespace dicr\asset;
 
 use Yii;
@@ -17,9 +16,6 @@ use function in_array;
 
 /**
  * Ресурсы редактора.
- *
- * @author Nghia Nguyen <yiidevelop@hotmail.com>
- * @author Igor (Dicr) Tarasov <develop@dicr.org>
  */
 class RedactorAsset extends AssetBundle
 {

@@ -3,11 +3,10 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 15.06.20 18:06:02
+ * @version 08.07.20 06:15:10
  */
 
 declare(strict_types=1);
-
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
