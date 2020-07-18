@@ -44,7 +44,7 @@ class SummernoteAsset extends AssetBundle
         ]
     ];
 
-    /** @var string[] зависимости */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class,
     ];

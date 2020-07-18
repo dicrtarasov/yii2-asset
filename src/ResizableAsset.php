@@ -19,20 +19,20 @@ use yii\web\JqueryAsset;
  */
 class ResizableAsset extends AssetBundle
 {
-    /** @var string */
+    /** @inheritDoc */
     public $sourcePath = __DIR__ . '/assets/resizable';
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
         'jquery.resizable.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $css = [
         'jquery.resizable.css'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class
     ];

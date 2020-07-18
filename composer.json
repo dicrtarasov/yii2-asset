@@ -1,8 +1,8 @@
 {
-    "type": "yii2-extension",
     "name": "dicr/yii2-asset",
-    "license": "GPL-2.0",
-    "description": "AssetBundle helpers for Yii2",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "description": "Ресурсы библиотек для Yii2",
     "authors": [
         {
             "name": "Igor Tarasov",
@@ -11,7 +11,7 @@
             "role": "developer"
         }
     ],
-    "keywords": ["dicr", "php", "yii2", "asset"],
+    "keywords": ["dicr", "yii2", "res", "asset"],
     "homepage": "https://gitlab.com/dicr/yii2-asset",
     "support": {
         "source": "https://gitlab.com/dicr/yii2-asset.git"

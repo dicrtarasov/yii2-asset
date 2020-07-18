@@ -17,15 +17,15 @@ use yii\web\JqueryAsset;
  */
 class DeparamAsset extends AssetBundle
 {
-    /** @var string */
+    /** @inheritDoc */
     public $sourcePath = __DIR__ . '/assets/deparam';
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
         'jquery.deparam.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class
     ];

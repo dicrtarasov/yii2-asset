@@ -21,7 +21,7 @@ use function is_array;
  */
 class YaMapsAsset extends AssetBundle
 {
-    /** @var string базовый URL */
+    /** @inheritDoc */
     public $baseUrl = 'https://api-maps.yandex.ru';
 
     /** @var string загружаемая версия */
@@ -55,8 +55,7 @@ class YaMapsAsset extends AssetBundle
     public $load;
 
     /**
-     * {@inheritDoc}
-     * @see \yii\web\AssetBundle::init()
+     * @inheritDoc
      */
     public function init()
     {

@@ -19,17 +19,17 @@ use yii\web\JqueryAsset;
  */
 class MultiselectAsset extends AssetBundle
 {
-    /** @var string[] */
+    /** @inheritDoc */
     public $css = [
         'https://cdn.jsdelivr.net/npm/@nobleclem/jquery-multiselect@2.4.16/jquery.multiselect.css',
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
         'https://cdn.jsdelivr.net/npm/@nobleclem/jquery-multiselect@2.4.16/jquery.multiselect.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class
     ];

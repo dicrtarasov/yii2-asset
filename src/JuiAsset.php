@@ -13,24 +13,22 @@ use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
 /**
- * Внешний хостинг JqueryUI.
- *
- * @noinspection PhpUnused
+ * Библиотека JqueryUI.
  */
 class JuiAsset extends AssetBundle
 {
-    /** @var string[] */
+    /** @inheritDoc */
     public $css = [
         'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
         'https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class
     ];

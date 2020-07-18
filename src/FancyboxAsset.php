@@ -19,17 +19,17 @@ use yii\web\JqueryAsset;
  */
 class FancyboxAsset extends AssetBundle
 {
-    /** @var string[] */
+    /** @inheritDoc */
     public $css = [
         'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
         'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class
     ];

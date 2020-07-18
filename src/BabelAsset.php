@@ -18,7 +18,7 @@ use yii\web\AssetBundle;
  */
 class BabelAsset extends AssetBundle
 {
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
         'https://unpkg.com/@babel/standalone/babel.min.js'
     ];

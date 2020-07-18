@@ -19,12 +19,12 @@ use yii\web\JqueryAsset;
  */
 class InputMaskAsset extends AssetBundle
 {
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.6/jquery.inputmask.bundle.min.js'
+        'https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class
     ];

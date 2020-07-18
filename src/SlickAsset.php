@@ -6,7 +6,7 @@
  * @version 08.07.20 06:15:05
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -19,23 +19,23 @@ use yii\web\JqueryAsset;
  */
 class SlickAsset extends AssetBundle
 {
-    /** @var string  */
-    public const CSS_THEME = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css';
+    /** @var string */
+    public const CSS_THEME = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css';
 
     /** @var bool включать тему */
     public $withTheme = false;
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $css = [
-        'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css',
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js'
+        'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class
     ];

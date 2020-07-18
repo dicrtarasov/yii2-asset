@@ -16,8 +16,9 @@ use yii\web\AssetBundle;
  */
 class MomentJsAsset extends AssetBundle
 {
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js'
+        'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/locale/ru.min.js'
     ];
 }

@@ -5,7 +5,7 @@
  * @version 08.07.20 06:23:05
  */
 
-(function ($) {
+(function (window, $) {
     'use strict';
 
     /* Override jQuery-UI Resizable
@@ -51,7 +51,12 @@
             // noinspection JSCheckFunctionSignatures
             $handle.on('mousedown.rsz touchstart.rsz', startDragging);
 
-            function noop(e)
+            /**
+             * Отмена события.
+             *
+             * @param e
+             */
+            function prevent(e)
             {
                 e.stopPropagation();
                 e.preventDefault();
@@ -60,8 +65,8 @@
             function startDragging(e)
             {
                 startPos = getMousePos(e);
-                startPos.width = parseInt($el.outerWidth(), 10);
-                startPos.height = parseInt($el.outerHeight(), 10);
+                startPos.width = Number($el.outerWidth());
+                startPos.height = Number($el.outerHeight());
 
                 if (opt.onDragStart && opt.onDragStart(e, $el, opt) === false) {
                     return;
@@ -81,7 +86,7 @@
                     $(window.document).on('touchend.rsz', stopDragging);
                 }
 
-                $(window.document).on('selectstart.rsz', noop); // disable selection
+                $(window.document).on('selectstart.rsz', prevent); // disable selection
             }
 
             function doDrag(e)
@@ -165,4 +170,4 @@
             }
         });
     };
-})(jQuery);
+})(window, jQuery);
