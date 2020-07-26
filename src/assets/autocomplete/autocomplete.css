@@ -1,37 +1,32 @@
-/*
- * @copyright 2019-2019 Dicr http://dicr.org
- * @author Igor A Tarasov <develop@dicr.org>
- * @license proprietary
- * @version 12.05.19 08:16:42
- */
-
 .autocomplete-suggestions {
     border: 1px solid #999;
     background: #fff;
-    overflow: auto;
+    overflow: auto
 }
 
 .autocomplete-suggestion {
     padding: 2px 5px;
     white-space: nowrap;
     overflow: hidden;
-    cursor: pointer;
+    cursor: pointer
+}
+
+.autocomplete-suggestion strong {
+    font-weight: normal;
+    color: #39f
 }
 
 .autocomplete-selected {
-    background: #f0f0f0;
-}
-
-.autocomplete-suggestions strong {
-    font-weight: normal;
-    color: #39f;
+    background: #f0f0f0
 }
 
 .autocomplete-group {
-    padding: 2px 5px;
+    padding: 2px 5px
 }
 
 .autocomplete-group strong {
     display: block;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #000
 }
+
+/*# sourceMappingURL=autocomplete.css.map */

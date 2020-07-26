@@ -1,8 +1,8 @@
 /*
- * @copyright 2019-2019 Dicr http://dicr.org
+ * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 30.04.19 02:39:05
+ * @version 26.07.20 11:15:46
  */
 
 (function ($R) {
@@ -22,7 +22,7 @@
             file: {
                 open: function ($modal, $form) {
                     if (!this.opts.fileManagerJson) return;
-                    this._load($modal)
+                    this._load($modal);
                 }
             }
         },

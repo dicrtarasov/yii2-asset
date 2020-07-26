@@ -1,15 +1,8 @@
-/*
- * @copyright 2019-2019 Dicr http://dicr.org
- * @author Igor A Tarasov <develop@dicr.org>
- * @license proprietary
- * @version 11.05.19 12:29:46
- */
-
 #redactor-filemanager-list a.redactor-file-manager-link {
     display: flex;
     flex-flow: row nowrap;
     font-size: 0;
-    padding: 0.3rem 0.5rem;
+    padding: 0.3rem 0.5rem
 }
 
 #redactor-filemanager-list a.redactor-file-manager-link span.r-file-name {
@@ -18,21 +11,20 @@
     color: #000;
     margin: 0 1rem 0 0;
     position: static;
-    word-break: break-all;
+    word-break: break-all
 }
 
 #redactor-filemanager-list a.redactor-file-manager-link span.r-file-size {
     flex: 0 0 auto;
     font-size: 0.95rem;
     position: static;
-    margin: 0;
+    margin: 0
 }
 
 .re-button-tooltip {
     color: #fff !important;
-    font-family: sans-serif ! importat;
-    font-weight: bold !important;
+    font-family: sans-serif !important;
+    font-weight: bold !important
 }
 
-
-
+/*# sourceMappingURL=redactor-fix.css.map */

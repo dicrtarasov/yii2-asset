@@ -3,7 +3,7 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 08.07.20 06:14:06
+ * @version 26.07.20 10:41:25
  */
 
 declare(strict_types=1);
@@ -17,15 +17,15 @@ use yii\web\JqueryAsset;
  */
 class DeparamAsset extends AssetBundle
 {
-    /** @var string */
+    /** @inheritDoc */
     public $sourcePath = __DIR__ . '/assets/deparam';
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
         'jquery.deparam.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class
     ];

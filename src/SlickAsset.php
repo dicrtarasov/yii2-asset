@@ -3,7 +3,7 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 08.07.20 06:15:05
+ * @version 26.07.20 10:41:29
  */
 
 declare(strict_types=1);
@@ -25,17 +25,17 @@ class SlickAsset extends AssetBundle
     /** @var bool включать тему */
     public $withTheme = false;
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $css = [
         'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css',
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
         'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class
     ];
@@ -43,7 +43,7 @@ class SlickAsset extends AssetBundle
     /**
      * @inheritDoc
      */
-    public function init()
+    public function init() : void
     {
         if ($this->withTheme) {
             $this->css[] = self::CSS_THEME;
