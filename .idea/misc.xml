@@ -23,6 +23,7 @@
       <entry_point TYPE="phpClass" FQNAME="\dicr\asset\SlickAsset" />
       <entry_point TYPE="phpClass" FQNAME="\dicr\asset\SummernoteAsset" />
       <entry_point TYPE="phpClass" FQNAME="\dicr\asset\YaMapsAsset" />
+      <entry_point TYPE="phpClass" FQNAME="\dicr\asset\JuiAsset" />
     </entry_point>
     <pattern value="\dicr\asset\AutocompleteAsset" />
     <pattern value="\dicr\asset\BabelAsset" />
@@ -41,5 +42,6 @@
     <pattern value="\dicr\asset\SlickAsset" />
     <pattern value="\dicr\asset\SummernoteAsset" />
     <pattern value="\dicr\asset\YaMapsAsset" />
+    <pattern value="\dicr\asset\JuiAsset" />
   </component>
 </project>

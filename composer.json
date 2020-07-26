@@ -1,8 +1,8 @@
 {
-    "type": "yii2-extension",
     "name": "dicr/yii2-asset",
-    "license": "GPL-2.0",
-    "description": "AssetBundle helpers for Yii2",
+    "type": "yii2-extension",
+    "license": "MIT",
+    "description": "Ресурсы библиотек для Yii2",
     "authors": [
         {
             "name": "Igor Tarasov",

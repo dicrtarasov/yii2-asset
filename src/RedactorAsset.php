@@ -19,28 +19,27 @@ use function in_array;
  */
 class RedactorAsset extends AssetBundle
 {
-    /** @var string */
+    /** @inheritDoc */
     public $sourcePath = __DIR__ . '/assets/redactor';
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $css = [
         'redactor.min.css',
         'redactor-fix.css'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
         'redactor.min.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class
     ];
 
     /**
-     * {@inheritDoc}
-     * @see \yii\web\AssetBundle::init()
+     * @inheritDoc
      */
     public function init()
     {

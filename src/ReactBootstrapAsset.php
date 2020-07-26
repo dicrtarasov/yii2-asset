@@ -20,12 +20,12 @@ use yii\web\AssetBundle;
  */
 class ReactBootstrapAsset extends AssetBundle
 {
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
         'https://unpkg.com/react-bootstrap@next/dist/react-bootstrap.min.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         ReactAsset::class
     ];

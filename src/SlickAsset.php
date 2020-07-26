@@ -6,7 +6,7 @@
  * @version 26.07.20 10:41:29
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -19,7 +19,7 @@ use yii\web\JqueryAsset;
  */
 class SlickAsset extends AssetBundle
 {
-    /** @var string  */
+    /** @var string */
     public const CSS_THEME = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css';
 
     /** @var bool включать тему */

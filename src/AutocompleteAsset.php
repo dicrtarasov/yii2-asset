@@ -13,24 +13,24 @@ use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
 /**
- * Ресурсы авто-дополнения.
+ * Библиотека DevBridge Autocomplete
  */
 class AutocompleteAsset extends AssetBundle
 {
-    /** @var string */
+    /** @inheritDoc */
     public $sourcePath = __DIR__ . '/assets/autocomplete';
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $js = [
         'https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.11/jquery.autocomplete.min.js'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $css = [
         'autocomplete.css'
     ];
 
-    /** @var string[] */
+    /** @inheritDoc */
     public $depends = [
         JqueryAsset::class
     ];

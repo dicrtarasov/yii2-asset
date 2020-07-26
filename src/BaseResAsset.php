@@ -20,15 +20,14 @@ use function is_array;
  */
 class BaseResAsset extends AssetBundle
 {
-    /** @var string */
+    /** @inheritDoc */
     public $basePath = '@webroot/res';
 
-    /** @var string */
+    /** @inheritDoc */
     public $baseUrl = '@web/res';
 
     /**
-     * {@inheritDoc}
-     * @see \yii\web\AssetBundle::init()
+     * @inheritDoc
      */
     public function init()
     {
@@ -51,7 +50,6 @@ class BaseResAsset extends AssetBundle
      * @param array $config
      * @return static
      * @throws InvalidConfigException
-     * @noinspection PhpUnused
      */
     public static function registerConfig(View $view, array $config)
     {

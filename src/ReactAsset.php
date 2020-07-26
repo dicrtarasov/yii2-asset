@@ -31,8 +31,7 @@ class ReactAsset extends AssetBundle
     ];
 
     /**
-     * {@inheritDoc}
-     * @see \yii\web\AssetManager::init()
+     * @inheritDoc
      */
     public function init()
     {
