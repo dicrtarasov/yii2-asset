@@ -2,7 +2,7 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 26.07.20 11:02:59
+ * @version 26.07.20 11:27:39
  */
 
 (function (window, $) {
@@ -82,10 +82,12 @@
                 $(window.document).on('mouseup.rsz', stopDragging);
 
                 if (window.Touch || navigator.maxTouchPoints) {
+                    // noinspection JSCheckFunctionSignatures
                     $(window.document).on('touchmove.rsz', opt.dragFunc);
                     $(window.document).on('touchend.rsz', stopDragging);
                 }
 
+                // noinspection JSCheckFunctionSignatures
                 $(window.document).on('selectstart.rsz', prevent); // disable selection
             }
 
