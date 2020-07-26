@@ -1,0 +1,36 @@
+// @copyright 2019-2020 Dicr http://dicr.org
+// @author Igor A Tarasov <develop@dicr.org>
+// @license proprietary
+// @version 26.07.20 11:17:44
+
+.autocomplete-suggestions {
+    border: 1px solid #999;
+    background: #fff;
+    overflow: auto;
+}
+
+.autocomplete-suggestion {
+    padding: 2px 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+
+    strong {
+        font-weight: normal;
+        color: #39f;
+    }
+}
+
+.autocomplete-selected {
+    background: #f0f0f0;
+}
+
+.autocomplete-group {
+    padding: 2px 5px;
+
+    strong {
+        display: block;
+        border-bottom: 1px solid #000;
+    }
+}
+

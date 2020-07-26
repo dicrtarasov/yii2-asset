@@ -1,0 +1,91 @@
+Index: src/assets/redactor/redactor-fix.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/assets/redactor/redactor-fix.scss	(date 1595743336884)
++++ src/assets/redactor/redactor-fix.scss	(date 1595743336884)
+@@ -0,0 +1,38 @@
++// @copyright 2019-2020 Dicr http://dicr.org
++// @author Igor A Tarasov <develop@dicr.org>
++// @license proprietary
++// @version 26.07.20 11:02:04
++
++#redactor-filemanager-list {
++    a.redactor-file-manager-link {
++        display: flex;
++        flex-flow: row nowrap;
++        font-size: 0;
++        padding: 0.3rem 0.5rem;
++
++        span.r-file-name {
++            flex: 1 1 0;
++            font-size: 0.95rem;
++            color: #000;
++            margin: 0 1rem 0 0;
++            position: static;
++            word-break: break-all;
++        }
++
++        span.r-file-size {
++            flex: 0 0 auto;
++            font-size: 0.95rem;
++            position: static;
++            margin: 0;
++        }
++    }
++}
++
++.re-button-tooltip {
++    color: #fff !important;
++    font-family: sans-serif !important;
++    font-weight: bold !important;
++}
++
++
++
+Index: src/assets/autocomplete/autocomplete.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/assets/autocomplete/autocomplete.scss	(date 1595743336888)
++++ src/assets/autocomplete/autocomplete.scss	(date 1595743336888)
+@@ -0,0 +1,37 @@
++// @copyright 2019-2020 Dicr http://dicr.org
++// @author Igor A Tarasov <develop@dicr.org>
++// @license proprietary
++// @version 26.07.20 10:59:28
++
++.autocomplete-suggestions {
++    border: 1px solid #999;
++    background: #fff;
++    overflow: auto;
++}
++
++.autocomplete-suggestion {
++    padding: 2px 5px;
++    white-space: nowrap;
++    overflow: hidden;
++    cursor: pointer;
++
++    strong {
++        font-weight: normal;
++        color: #39f;
++    }
++}
++
++.autocomplete-selected {
++    background: #f0f0f0;
++}
++
++
++.autocomplete-group {
++    padding: 2px 5px;
++
++    strong {
++        display: block;
++        border-bottom: 1px solid #000;
++    }
++}
++
