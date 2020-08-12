@@ -22,6 +22,7 @@ use yii\base\Exception;
 use yii\web\AssetConverterInterface;
 
 use function array_unique;
+use function basename;
 use function dirname;
 use function file_get_contents;
 use function file_put_contents;
@@ -36,6 +37,8 @@ use const YII_ENV_DEV;
 
 /**
  * PHP-конвертор SCSS.
+ *
+ * @link https://scssphp.github.io/scssphp/docs/
  */
 class ScssConverter extends Component implements AssetConverterInterface
 {
@@ -178,10 +181,17 @@ class ScssConverter extends Component implements AssetConverterInterface
 
         // sourceMap
         if ($this->sourceMap) {
+            $baseName = basename($result);
+
             $this->compiler->setSourceMapOptions([
+                // путь map-файла
                 'sourceMapWriteTo' => $basePath . '/' . $result . '.map',
-                'sourceMapURL' => $result . '.map',
-                'sourceMapFilename' => $result,
+                // относительный url файла
+                'sourceMapURL' => $baseName . '.map',
+                // базовый путь исходного файла
+                'sourceMapBasepath' => dirname($src),
+                // относительный путь файла назначения
+                'sourceMapFilename' => $baseName
             ]);
         }
 
