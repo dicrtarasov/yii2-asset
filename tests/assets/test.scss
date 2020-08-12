@@ -1,0 +1,15 @@
+// @copyright 2019-2020 Dicr http://dicr.org
+// @author Igor A Tarasov <develop@dicr.org>
+// @license proprietary
+// @version 13.08.20 01:31:43
+
+@import "./mix";
+
+div {
+    display: block;
+    border-radius: $border-radius;
+
+    p {
+        @include color;
+    }
+}

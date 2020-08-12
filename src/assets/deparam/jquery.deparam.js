@@ -28,6 +28,7 @@
                 return deparam(jquery);
             });
         } else {
+            // noinspection JSUnusedGlobalSymbols
             window.deparam = deparam($); // assume jQuery is in global namespace
         }
     }

@@ -1,0 +1,200 @@
+<?php
+/*
+ * @copyright 2019-2020 Dicr http://dicr.org
+ * @author Igor A Tarasov <develop@dicr.org>
+ * @license proprietary
+ * @version 13.08.20 00:05:05
+ */
+
+declare(strict_types = 1);
+namespace dicr\asset;
+
+use ScssPhp\ScssPhp\Compiler;
+use ScssPhp\ScssPhp\Formatter\Compact;
+use ScssPhp\ScssPhp\Formatter\Compressed;
+use ScssPhp\ScssPhp\Formatter\Crunched;
+use ScssPhp\ScssPhp\Formatter\Expanded;
+use ScssPhp\ScssPhp\Formatter\Nested;
+use Throwable;
+use Yii;
+use yii\base\Component;
+use yii\base\Exception;
+use yii\web\AssetConverterInterface;
+
+use function array_unique;
+use function dirname;
+use function file_get_contents;
+use function file_put_contents;
+use function filemtime;
+use function is_file;
+use function strrpos;
+use function strtolower;
+use function substr;
+
+use const LOCK_EX;
+use const YII_ENV_DEV;
+
+/**
+ * PHP-конвертор SCSS.
+ */
+class ScssConverter extends Component implements AssetConverterInterface
+{
+    /** @var string */
+    public const FORMATTER_EXPANDED = Expanded::class;
+
+    /** @var string */
+    public const FORMATTER_NESTED = Nested::class;
+
+    /** @var string */
+    public const FORMATTER_COMPRESSED = Compressed::class;
+
+    /** @var string */
+    public const FORMATTER_COMPACT = Compact::class;
+
+    /** @var string */
+    public const FORMATTER_CRUNCHED = Crunched::class;
+
+    /** @var int */
+    public const SOURCE_MAP_NONE = Compiler::SOURCE_MAP_NONE;
+
+    /** @var int */
+    public const SOURCE_MAP_INLINE = Compiler::SOURCE_MAP_INLINE;
+
+    /** @var int */
+    public const SOURCE_MAP_FILE = Compiler::SOURCE_MAP_FILE;
+
+    /** @var string */
+    public $formatter;
+
+    /** @var bool */
+    public $sourceMap;
+
+    /** @var Compiler */
+    private $compiler;
+
+    /**
+     * @inheritDoc
+     */
+    public function init()
+    {
+        parent::init();
+
+        if (! isset($this->sourceMap)) {
+            $this->sourceMap = YII_ENV_DEV;
+        }
+
+        if (! isset($this->formatter)) {
+            $this->formatter = YII_ENV_DEV ? self::FORMATTER_EXPANDED : self::FORMATTER_CRUNCHED;
+        }
+
+        $this->compiler = new Compiler();
+
+        $this->compiler->setFormatter($this->formatter);
+
+        $this->compiler->setSourceMap(
+            $this->sourceMap ? Compiler::SOURCE_MAP_FILE : Compiler::SOURCE_MAP_NONE
+        );
+    }
+
+    /**
+     * @inheritDoc
+     * @throws Exception
+     */
+    public function convert($asset, $basePath)
+    {
+        try {
+            $result = $this->getResultPath($asset, $basePath);
+
+            $this->compile($basePath, $asset, $result);
+
+            Yii::debug('Конвертирован в CSS ресурс: ' . $basePath . '/' . $asset, __METHOD__);
+        } catch (Throwable $ex) {
+            if (YII_ENV_DEV) {
+                throw new Exception('Ошибка компиляции: ' . $asset, 0, $ex);
+            }
+
+            Yii::error($ex, __METHOD__);
+            $result = $asset;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Возвращает путь файла результата.
+     *
+     * @param string $asset относительный путь источника
+     * @param string $basePath базовый путь
+     * @return string относительный путь результата
+     * @throws Exception
+     */
+    protected function getResultPath(string $asset, string $basePath): string
+    {
+        // позиция расширения файла
+        $pos = strrpos($asset, '.');
+        if ($pos === false) {
+            throw new Exception('Не найдено расширение у ресурса: ' . $basePath . '/' . $asset);
+        }
+
+        // проверяем правильность расширения
+        $ext = substr($asset, $pos + 1);
+        if (strtolower($ext) !== 'scss') {
+            throw new Exception('Неизвестное расширение у ресурса: ' . $basePath . '/' . $asset);
+        }
+
+        // относительный путь результата
+        return substr($asset, 0, $pos) . '.css';
+    }
+
+    /**
+     * Компилирует файл.
+     *
+     * @param string $basePath
+     * @param string $asset
+     * @param string $result
+     * @throws Exception
+     * @noinspection PhpUsageOfSilenceOperatorInspection
+     */
+    protected function compile(string $basePath, string $asset, string $result): void
+    {
+        // абсолютный путь исходного файла и результата
+        $src = $basePath . '/' . $asset;
+        $dst = $basePath . '/' . $result;
+
+        // если файл уже готов, то пропускаем
+        if (@is_file($dst) && @filemtime($dst) >= @filemtime($src)) {
+            return;
+        }
+
+        $scss = @file_get_contents($src);
+        if ($scss === false) {
+            throw new Exception('Ошибка чтения ресурса: ' . $src);
+        }
+
+        // устанавливаем базовый путь импорта файлов
+        $this->compiler->setImportPaths(array_unique([
+            $basePath,
+            dirname($src)
+        ]));
+
+        if ($this->sourceMap) {
+            $this->compiler->setSourceMapOptions([
+                'sourceMapWriteTo' => $basePath . '/' . $result . '.map',
+                'sourceMapURL' => $result . '.map',
+                'sourceMapFilename' => $result,
+            ]);
+        }
+
+        // компилируем
+        try {
+            $css = $this->compiler->compile($scss, $src);
+        } catch (Throwable $ex) {
+            throw new Exception('Ошибка компиляции ресурса: ' . $src . ': ' . $ex);
+        }
+
+        // сохраняем файл
+        if (@file_put_contents($dst, $css, LOCK_EX) === false) {
+            throw new Exception('Ошибка записи ресурса: ' . $dst);
+        }
+    }
+}
