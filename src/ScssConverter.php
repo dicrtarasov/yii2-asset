@@ -72,6 +72,9 @@ class ScssConverter extends Component implements AssetConverterInterface
     /** @var bool */
     public $sourceMap;
 
+    /** @var bool перекомпилировать, независимо от свежести (необходимо при работе с mixein) */
+    public $force;
+
     /** @var Compiler */
     private $compiler;
 
@@ -88,6 +91,10 @@ class ScssConverter extends Component implements AssetConverterInterface
 
         if (! isset($this->formatter)) {
             $this->formatter = YII_ENV_DEV ? self::FORMATTER_EXPANDED : self::FORMATTER_CRUNCHED;
+        }
+
+        if (! isset($this->force)) {
+            $this->force = YII_ENV_DEV;
         }
 
         $this->compiler = new Compiler();
@@ -163,7 +170,7 @@ class ScssConverter extends Component implements AssetConverterInterface
         $dst = $basePath . '/' . $result;
 
         // если файл уже готов, то пропускаем
-        if (@is_file($dst) && @filemtime($dst) >= @filemtime($src)) {
+        if (! $this->force && @is_file($dst) && @filemtime($dst) >= @filemtime($src)) {
             return $result;
         }
 
