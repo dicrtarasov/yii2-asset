@@ -100,18 +100,10 @@ class ScssConverter extends Component implements AssetConverterInterface
      * @inheritDoc
      * @throws Exception
      */
-    public function convert($asset, $basePath)
+    public function convert($asset, $basePath): string
     {
-        $result = $this->getResultPath($asset);
-        if (empty($result)) {
-            return $asset;
-        }
-
         try {
-            $this->compile($basePath, $asset, $result);
-            Yii::debug('Конвертирован в CSS ресурс: ' . $basePath . '/' . $asset, __METHOD__);
-
-            return $result;
+            return $this->compile($basePath, $asset);
         } catch (Throwable $ex) {
             if (YII_ENV_DEV) {
                 throw new Exception('Ошибка компиляции: ' . $asset, 0, $ex);
@@ -149,21 +141,30 @@ class ScssConverter extends Component implements AssetConverterInterface
      *
      * @param string $basePath
      * @param string $asset
-     * @param string $result
+     * @return string относительный путь файла результата или исходный файл
      * @throws Exception
      * @noinspection PhpUsageOfSilenceOperatorInspection
      */
-    protected function compile(string $basePath, string $asset, string $result): void
+    protected function compile(string $basePath, string $asset): string
     {
+        // получаем адрес назначения
+        $result = $this->getResultPath($asset);
+
+        // если файл не поддерживается, то возвращаем без изменений
+        if (empty($result)) {
+            return $asset;
+        }
+
         // абсолютный путь исходного файла и результата
         $src = $basePath . '/' . $asset;
         $dst = $basePath . '/' . $result;
 
         // если файл уже готов, то пропускаем
         if (@is_file($dst) && @filemtime($dst) >= @filemtime($src)) {
-            return;
+            return $result;
         }
 
+        // читаем файл
         $scss = @file_get_contents($src);
         if ($scss === false) {
             throw new Exception('Ошибка чтения ресурса: ' . $src);
@@ -175,6 +176,7 @@ class ScssConverter extends Component implements AssetConverterInterface
             dirname($src)
         ]));
 
+        // sourceMap
         if ($this->sourceMap) {
             $this->compiler->setSourceMapOptions([
                 'sourceMapWriteTo' => $basePath . '/' . $result . '.map',
@@ -194,5 +196,9 @@ class ScssConverter extends Component implements AssetConverterInterface
         if (@file_put_contents($dst, $css, LOCK_EX) === false) {
             throw new Exception('Ошибка записи ресурса: ' . $dst);
         }
+
+        Yii::debug('SCSS скомпилирован в : ' . $basePath . '/' . $result, __METHOD__);
+
+        return $result;
     }
 }
