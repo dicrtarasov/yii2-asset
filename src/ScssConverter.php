@@ -102,48 +102,46 @@ class ScssConverter extends Component implements AssetConverterInterface
      */
     public function convert($asset, $basePath)
     {
+        $result = $this->getResultPath($asset);
+        if (empty($result)) {
+            return $asset;
+        }
+
         try {
-            $result = $this->getResultPath($asset, $basePath);
-
             $this->compile($basePath, $asset, $result);
-
             Yii::debug('Конвертирован в CSS ресурс: ' . $basePath . '/' . $asset, __METHOD__);
+
+            return $result;
         } catch (Throwable $ex) {
             if (YII_ENV_DEV) {
                 throw new Exception('Ошибка компиляции: ' . $asset, 0, $ex);
             }
 
             Yii::error($ex, __METHOD__);
-            $result = $asset;
         }
 
-        return $result;
+        return $asset;
     }
 
     /**
      * Возвращает путь файла результата.
      *
      * @param string $asset относительный путь источника
-     * @param string $basePath базовый путь
-     * @return string относительный путь результата
-     * @throws Exception
+     * @return ?string относительный путь результата или null, если конвертация не требуется
      */
-    protected function getResultPath(string $asset, string $basePath): string
+    protected function getResultPath(string $asset): ?string
     {
         // позиция расширения файла
         $pos = strrpos($asset, '.');
-        if ($pos === false) {
-            throw new Exception('Не найдено расширение у ресурса: ' . $basePath . '/' . $asset);
+        if ($pos !== false) {
+            // проверяем правильность расширения
+            $ext = substr($asset, $pos + 1);
+            if (strtolower($ext) === 'scss') {
+                return substr($asset, 0, $pos) . '.css';
+            }
         }
 
-        // проверяем правильность расширения
-        $ext = substr($asset, $pos + 1);
-        if (strtolower($ext) !== 'scss') {
-            throw new Exception('Неизвестное расширение у ресурса: ' . $basePath . '/' . $asset);
-        }
-
-        // относительный путь результата
-        return substr($asset, 0, $pos) . '.css';
+        return null;
     }
 
     /**
