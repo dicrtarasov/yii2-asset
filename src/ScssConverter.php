@@ -36,7 +36,8 @@ use const LOCK_EX;
 use const YII_ENV_DEV;
 
 /**
- * PHP-конвертор SCSS.
+ * Быстрый PHP-компилятор SCSS.
+ * Быстродействие намного выше запуска стандартной внешней команды sass и сравнимо с командой sassc.
  *
  * @link https://scssphp.github.io/scssphp/docs/
  */
@@ -57,23 +58,25 @@ class ScssConverter extends Component implements AssetConverterInterface
     /** @var string */
     public const FORMATTER_CRUNCHED = Crunched::class;
 
-    /** @var int */
-    public const SOURCE_MAP_NONE = Compiler::SOURCE_MAP_NONE;
-
-    /** @var int */
-    public const SOURCE_MAP_INLINE = Compiler::SOURCE_MAP_INLINE;
-
-    /** @var int */
-    public const SOURCE_MAP_FILE = Compiler::SOURCE_MAP_FILE;
-
-    /** @var string */
+    /** @var string форматирование */
     public $formatter;
 
-    /** @var bool */
+    /** @var bool включить генерацию карт */
     public $sourceMap;
 
-    /** @var bool перекомпилировать, независимо от свежести (необходимо при работе с mixein) */
+    /**
+     * @var bool перекомпилировать, независимо от времени модификации источника.
+     * Требуется при разработке, так как файл может включать другие, изменение которых отследить нельзя.
+     */
     public $force;
+
+    /**
+     * @var string[] список зависимостей
+     * Если список зависимостей общий и фиксированный, то чтобы при разработке не включать force,
+     * можно определить файлы, изменения которых отслеживать для перекомпиляции.
+     * Можно указывать через алиасы как например '@webroot/res/...'
+     */
+    public $depends = [];
 
     /** @var Compiler */
     private $compiler;
@@ -97,10 +100,24 @@ class ScssConverter extends Component implements AssetConverterInterface
             $this->force = YII_ENV_DEV;
         }
 
+        // проверяем файлы зависимостей
+        if (! empty($this->depends)) {
+            foreach ($this->depends as $idx => &$alias) {
+                $file = Yii::getAlias($alias);
+                if ($file !== false && is_file($file)) {
+                    $alias = $file;
+                } else {
+                    Yii::error('Зависимый файл не существует: ' . $alias, __METHOD__);
+                    unset($this->depends[$idx]);
+                }
+            }
+
+            unset($alias);
+        }
+
+        // создаем и инициализируем компилятор
         $this->compiler = new Compiler();
-
         $this->compiler->setFormatter($this->formatter);
-
         $this->compiler->setSourceMap(
             $this->sourceMap ? Compiler::SOURCE_MAP_FILE : Compiler::SOURCE_MAP_NONE
         );
@@ -147,6 +164,34 @@ class ScssConverter extends Component implements AssetConverterInterface
     }
 
     /**
+     * Определяет нужна ли перекомпиляция файла.
+     *
+     * @param string $src
+     * @param string $dst
+     * @return bool
+     * @noinspection PhpUsageOfSilenceOperatorInspection
+     */
+    protected function needRecompile(string $src, string $dst): bool
+    {
+        if ($this->force || ! @is_file($dst)) {
+            return true;
+        }
+
+        // проверяем модификацию файла-источника вместе с остальными статическими зависимостями
+        $depends = (array)($this->depends ?: []);
+        $depends[] = $src;
+        $dstTime = @filemtime($dst);
+
+        foreach ($depends as $dep) {
+            if (@filemtime($dep) > $dstTime) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Компилирует файл.
      *
      * @param string $basePath
@@ -159,8 +204,6 @@ class ScssConverter extends Component implements AssetConverterInterface
     {
         // получаем адрес назначения
         $result = $this->getResultPath($asset);
-
-        // если файл не поддерживается, то возвращаем без изменений
         if (empty($result)) {
             return $asset;
         }
@@ -169,8 +212,13 @@ class ScssConverter extends Component implements AssetConverterInterface
         $src = $basePath . '/' . $asset;
         $dst = $basePath . '/' . $result;
 
-        // если файл уже готов, то пропускаем
-        if (! $this->force && @is_file($dst) && @filemtime($dst) >= @filemtime($src)) {
+        // если исходный файл не существует то ошибка
+        if (! is_file($src)) {
+            throw new Exception('Исходный файл не найден: ' . $src);
+        }
+
+        // если не нужно перекомпилировать то пропускаем
+        if (! $this->needRecompile($src, $dst)) {
             return $result;
         }
 
