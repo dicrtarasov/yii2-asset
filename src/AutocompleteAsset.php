@@ -27,7 +27,7 @@ class AutocompleteAsset extends AssetBundle
 
     /** @inheritDoc */
     public $css = [
-        'autocomplete.css'
+        'autocomplete.scss'
     ];
 
     /** @inheritDoc */

@@ -78,9 +78,6 @@ class ScssConverter extends Component implements AssetConverterInterface
      */
     public $depends = [];
 
-    /** @var Compiler */
-    private $compiler;
-
     /**
      * @inheritDoc
      */
@@ -114,13 +111,6 @@ class ScssConverter extends Component implements AssetConverterInterface
 
             unset($alias);
         }
-
-        // создаем и инициализируем компилятор
-        $this->compiler = new Compiler();
-        $this->compiler->setFormatter($this->formatter);
-        $this->compiler->setSourceMap(
-            $this->sourceMap ? Compiler::SOURCE_MAP_FILE : Compiler::SOURCE_MAP_NONE
-        );
     }
 
     /**
@@ -140,6 +130,26 @@ class ScssConverter extends Component implements AssetConverterInterface
         }
 
         return $asset;
+    }
+
+    /**
+     * Создает компилятор.
+     * Так как он не очищается после компиляции каждого файла, то требуется пересоздание.
+     *
+     * @return Compiler
+     */
+    protected function createCompiler(): Compiler
+    {
+        // создаем и инициализируем компилятор
+        $compiler = new Compiler();
+
+        $compiler->setFormatter($this->formatter);
+
+        $compiler->setSourceMap(
+            $this->sourceMap ? Compiler::SOURCE_MAP_FILE : Compiler::SOURCE_MAP_NONE
+        );
+
+        return $compiler;
     }
 
     /**
@@ -228,8 +238,10 @@ class ScssConverter extends Component implements AssetConverterInterface
             throw new Exception('Ошибка чтения ресурса: ' . $src);
         }
 
+        $compiler = $this->createCompiler();
+
         // устанавливаем базовый путь импорта файлов
-        $this->compiler->setImportPaths(array_unique([
+        $compiler->setImportPaths(array_unique([
             $basePath,
             dirname($src)
         ]));
@@ -238,7 +250,7 @@ class ScssConverter extends Component implements AssetConverterInterface
         if ($this->sourceMap) {
             $baseName = basename($result);
 
-            $this->compiler->setSourceMapOptions([
+            $compiler->setSourceMapOptions([
                 // путь map-файла
                 'sourceMapWriteTo' => $basePath . '/' . $result . '.map',
                 // относительный url файла
@@ -252,7 +264,7 @@ class ScssConverter extends Component implements AssetConverterInterface
 
         // компилируем
         try {
-            $css = $this->compiler->compile($scss, $src);
+            $css = $compiler->compile($scss, $src);
         } catch (Throwable $ex) {
             throw new Exception('Ошибка компиляции ресурса: ' . $src . ': ' . $ex);
         }

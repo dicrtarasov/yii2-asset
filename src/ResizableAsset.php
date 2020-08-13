@@ -29,7 +29,7 @@ class ResizableAsset extends AssetBundle
 
     /** @inheritDoc */
     public $css = [
-        'jquery.resizable.css'
+        'jquery.resizable.scss'
     ];
 
     /** @inheritDoc */
