@@ -242,7 +242,6 @@ class ScssConverter extends Component implements AssetConverterInterface
 
         // устанавливаем базовый путь импорта файлов
         $compiler->setImportPaths(array_unique([
-            $basePath,
             dirname($src)
         ]));
 
