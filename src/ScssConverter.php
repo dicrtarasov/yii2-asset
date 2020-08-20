@@ -143,6 +143,7 @@ class ScssConverter extends Component implements AssetConverterInterface
         // создаем и инициализируем компилятор
         $compiler = new Compiler();
 
+        $compiler->setEncoding('utf-8');
         $compiler->setFormatter($this->formatter);
 
         $compiler->setSourceMap(

@@ -18,19 +18,15 @@
     },
     "minimum-stability": "stable",
     "autoload": {
-        "psr-4": {
-            "dicr\\asset\\": "src/"
-        }
+        "psr-4": {"dicr\\asset\\": "src/"}
+    },
+    "autoload-dev": {
+        "psr-4": {"dicr\\tests\\": "tests/"}
     },
     "require": {
         "php": "~7.4",
         "yiisoft/yii2": "~2.0",
         "scssphp/scssphp": "~1.1"
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "dicr\\tests\\": "tests/"
-        }
     },
     "require-dev": {
         "phpunit/phpunit": "~9.3"
