@@ -29,7 +29,7 @@ class BaseResAsset extends AssetBundle
     /**
      * @inheritDoc
      */
-    public function init()
+    public function init() : void
     {
         // конвертируем в массивы
         foreach (['css', 'js', 'depends'] as $field) {
@@ -51,7 +51,7 @@ class BaseResAsset extends AssetBundle
      * @return static
      * @throws InvalidConfigException
      */
-    public static function registerConfig(View $view, array $config)
+    public static function registerConfig(View $view, array $config) : BaseResAsset
     {
         $am = $view->getAssetManager();
         $asset = new static($config);

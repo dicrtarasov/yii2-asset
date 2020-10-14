@@ -57,7 +57,7 @@ class YaMapsAsset extends AssetBundle
     /**
      * @inheritDoc
      */
-    public function init()
+    public function init() : void
     {
         // формируем путь скрипта
         $js = $this->baseUrl;

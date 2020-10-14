@@ -52,7 +52,7 @@ class SummernoteAsset extends AssetBundle
     /**
      * @inheritDoc
      */
-    public function init()
+    public function init() : void
     {
         // определяем версии Bootstrap
         if (class_exists('yii\bootstrap4\BootstrapAsset')) {
@@ -67,7 +67,7 @@ class SummernoteAsset extends AssetBundle
      *
      * @param array $res
      */
-    private function addResources(array $res)
+    private function addResources(array $res) : void
     {
         if (!empty($res['css'])) {
             foreach ($res['css'] as $css) {

@@ -117,7 +117,7 @@
                     const css = {};
 
                     if (opt.resizeWidth) {
-                        // noinspection NestedAssignmentJS,JSUnusedGlobalSymbols,AssignmentResultUsedJS
+                        // noinspection NestedAssignmentJS,JSUnusedGlobalSymbols,AssignmentResultUsedJS,JSUnresolvedVariable
                         css.width = css.minWidth = css.maxWidth = startPos.width + pos.x - startPos.x;
                     }
 

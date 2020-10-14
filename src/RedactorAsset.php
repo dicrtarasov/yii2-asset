@@ -43,7 +43,7 @@ class RedactorAsset extends AssetBundle
      *
      * @param string[] $plugins
      */
-    public function addPluginsResources(array $plugins)
+    public function addPluginsResources(array $plugins) : void
     {
         foreach ($plugins as $plugin) {
             $js = 'plugins/' . $plugin . '/' . $plugin . '.js';

@@ -33,7 +33,7 @@ class ReactAsset extends AssetBundle
     /**
      * @inheritDoc
      */
-    public function init()
+    public function init() : void
     {
         $this->js = self::JS[YII_ENV_DEV ? 'dev' : 'prod'];
 

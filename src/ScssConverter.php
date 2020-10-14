@@ -81,7 +81,7 @@ class ScssConverter extends Component implements AssetConverterInterface
     /**
      * @inheritDoc
      */
-    public function init()
+    public function init() : void
     {
         parent::init();
 

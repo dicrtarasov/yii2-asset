@@ -32,7 +32,7 @@ class ScssConverterTest extends TestCase
     /**
      * Тест
      */
-    public function testConvert()
+    public function testConvert() : void
     {
         $converter = Yii::$app->assetManager->getConverter();
 

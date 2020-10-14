@@ -43,7 +43,7 @@ class SlickAsset extends AssetBundle
     /**
      * @inheritDoc
      */
-    public function init()
+    public function init() : void
     {
         if ($this->withTheme) {
             $this->css[] = self::CSS_THEME;
