@@ -10,11 +10,7 @@ declare(strict_types = 1);
 namespace dicr\asset;
 
 use ScssPhp\ScssPhp\Compiler;
-use ScssPhp\ScssPhp\Formatter\Compact;
-use ScssPhp\ScssPhp\Formatter\Compressed;
-use ScssPhp\ScssPhp\Formatter\Crunched;
-use ScssPhp\ScssPhp\Formatter\Expanded;
-use ScssPhp\ScssPhp\Formatter\Nested;
+use ScssPhp\ScssPhp\OutputStyle;
 use Throwable;
 use Yii;
 use yii\base\Component;
@@ -43,23 +39,8 @@ use const YII_ENV_DEV;
  */
 class ScssConverter extends Component implements AssetConverterInterface
 {
-    /** @var string */
-    public const FORMATTER_EXPANDED = Expanded::class;
-
-    /** @var string */
-    public const FORMATTER_NESTED = Nested::class;
-
-    /** @var string */
-    public const FORMATTER_COMPRESSED = Compressed::class;
-
-    /** @var string */
-    public const FORMATTER_COMPACT = Compact::class;
-
-    /** @var string */
-    public const FORMATTER_CRUNCHED = Crunched::class;
-
-    /** @var string форматирование */
-    public $formatter;
+    /** @var string стиль вывода (ScssPhp\ScssPhp\OutputStyle::*) */
+    public $outputStyle;
 
     /** @var bool включить генерацию карт */
     public $sourceMap;
@@ -89,8 +70,8 @@ class ScssConverter extends Component implements AssetConverterInterface
             $this->sourceMap = YII_ENV_DEV;
         }
 
-        if (! isset($this->formatter)) {
-            $this->formatter = YII_ENV_DEV ? self::FORMATTER_EXPANDED : self::FORMATTER_CRUNCHED;
+        if (! isset($this->outputStyle)) {
+            $this->outputStyle = YII_ENV_DEV ? OutputStyle::EXPANDED : OutputStyle::COMPRESSED;
         }
 
         if (! isset($this->force)) {
@@ -117,7 +98,7 @@ class ScssConverter extends Component implements AssetConverterInterface
      * @inheritDoc
      * @throws Exception
      */
-    public function convert($asset, $basePath): string
+    public function convert($asset, $basePath) : string
     {
         try {
             return $this->compile($basePath, $asset);
@@ -138,13 +119,16 @@ class ScssConverter extends Component implements AssetConverterInterface
      *
      * @return Compiler
      */
-    protected function createCompiler(): Compiler
+    protected function createCompiler() : Compiler
     {
         // создаем и инициализируем компилятор
         $compiler = new Compiler();
 
         $compiler->setEncoding('utf-8');
-        $compiler->setFormatter($this->formatter);
+
+        if (! empty($this->outputStyle)) {
+            $compiler->setOutputStyle($this->outputStyle);
+        }
 
         $compiler->setSourceMap(
             $this->sourceMap ? Compiler::SOURCE_MAP_FILE : Compiler::SOURCE_MAP_NONE
@@ -159,7 +143,7 @@ class ScssConverter extends Component implements AssetConverterInterface
      * @param string $asset относительный путь источника
      * @return ?string относительный путь результата или null, если конвертация не требуется
      */
-    protected function getResultPath(string $asset): ?string
+    protected function getResultPath(string $asset) : ?string
     {
         // позиция расширения файла
         $pos = strrpos($asset, '.');
@@ -182,7 +166,7 @@ class ScssConverter extends Component implements AssetConverterInterface
      * @return bool
      * @noinspection PhpUsageOfSilenceOperatorInspection
      */
-    protected function needRecompile(string $src, string $dst): bool
+    protected function needRecompile(string $src, string $dst) : bool
     {
         if ($this->force || ! @is_file($dst)) {
             return true;
@@ -211,7 +195,7 @@ class ScssConverter extends Component implements AssetConverterInterface
      * @throws Exception
      * @noinspection PhpUsageOfSilenceOperatorInspection
      */
-    protected function compile(string $basePath, string $asset): string
+    protected function compile(string $basePath, string $asset) : string
     {
         // получаем адрес назначения
         $result = $this->getResultPath($asset);

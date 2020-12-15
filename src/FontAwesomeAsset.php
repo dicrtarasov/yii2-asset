@@ -18,14 +18,17 @@ use yii\web\AssetBundle;
  */
 class FontAwesomeAsset extends AssetBundle
 {
+    /** @inheritDoc  */
+    public $baseUrl = 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5';
+
     /** @inheritDoc */
     public $css = [
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css',
+        'css/all.min.css',
     ];
 
     /*
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js'
+        'js/all.min.js'
     ];
     */
 }

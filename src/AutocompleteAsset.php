@@ -22,7 +22,7 @@ class AutocompleteAsset extends AssetBundle
 
     /** @inheritDoc */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/jquery.devbridge-autocomplete/1.4.11/jquery.autocomplete.min.js'
+        'https://cdn.jsdelivr.net/npm/devbridge-autocomplete@1/dist/jquery.autocomplete.min.js'
     ];
 
     /** @inheritDoc */

@@ -18,7 +18,7 @@
             // noop
         }
 
-        // noinspection JSUnresolvedVariable
+        // noinspection JSUnusedGlobalSymbols
         module.exports = deparam(jquery);
     } else {
         // noinspection JSUnresolvedVariable

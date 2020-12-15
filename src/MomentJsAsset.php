@@ -6,7 +6,7 @@
  * @version 08.07.20 06:14:40
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -17,8 +17,11 @@ use yii\web\AssetBundle;
 class MomentJsAsset extends AssetBundle
 {
     /** @inheritDoc */
+    public $baseUrl = 'https://cdn.jsdelivr.net/npm/moment@2/dist';
+
+    /** @inheritDoc */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js',
-        'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/locale/ru.min.js'
+        'moment.min.js',
+        'locale/ru.min.js'
     ];
 }

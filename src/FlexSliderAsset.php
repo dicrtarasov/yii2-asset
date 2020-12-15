@@ -21,14 +21,17 @@ use yii\web\JqueryAsset;
  */
 class FlexSliderAsset extends AssetBundle
 {
+    /** @inheritDoc  */
+    public $baseUrl = 'https://cdn.jsdelivr.net/npm/flexslider@2';
+
     /** @inheritDoc */
     public $css = [
-        'https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/flexslider.min.css'
+        'flexslider.min.css'
     ];
 
     /** @inheritDoc */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/flexslider/2.7.2/jquery.flexslider.min.js'
+        'jquery.flexslider.min.js'
     ];
 
     /** @inheritDoc */

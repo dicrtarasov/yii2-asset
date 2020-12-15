@@ -6,7 +6,7 @@
  * @version 08.07.20 06:14:43
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -20,13 +20,16 @@ use yii\web\JqueryAsset;
 class MultiselectAsset extends AssetBundle
 {
     /** @inheritDoc */
+    public $baseUrl = 'https://cdn.jsdelivr.net/npm/@nobleclem/jquery-multiselect@2';
+
+    /** @inheritDoc */
     public $css = [
-        'https://cdn.jsdelivr.net/npm/@nobleclem/jquery-multiselect@2.4.16/jquery.multiselect.css',
+        'jquery.multiselect.min.css',
     ];
 
     /** @inheritDoc */
     public $js = [
-        'https://cdn.jsdelivr.net/npm/@nobleclem/jquery-multiselect@2.4.16/jquery.multiselect.js'
+        'jquery.multiselect.min.js'
     ];
 
     /** @inheritDoc */

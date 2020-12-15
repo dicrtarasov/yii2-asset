@@ -6,7 +6,7 @@
  * @version 26.07.20 10:56:38
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
@@ -20,13 +20,16 @@ use yii\web\JqueryAsset;
 class FancyboxAsset extends AssetBundle
 {
     /** @inheritDoc */
+    public $baseUrl = 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist';
+
+    /** @inheritDoc */
     public $css = [
-        'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css'
+        'jquery.fancybox.min.css'
     ];
 
     /** @inheritDoc */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js'
+        'jquery.fancybox.min.js'
     ];
 
     /** @inheritDoc */

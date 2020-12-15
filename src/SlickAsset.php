@@ -19,20 +19,23 @@ use yii\web\JqueryAsset;
  */
 class SlickAsset extends AssetBundle
 {
+    /** @inheritDoc */
+    public $baseUrl = 'https://cdn.jsdelivr.net/npm/slick-carousel@1/slick';
+
     /** @var string */
-    public const CSS_THEME = 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css';
+    public const CSS_THEME = 'slick-theme.min.css';
 
     /** @var bool включать тему */
     public $withTheme = false;
 
     /** @inheritDoc */
     public $css = [
-        'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css',
+        'slick.min.css',
     ];
 
     /** @inheritDoc */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js'
+        'slick.min.js'
     ];
 
     /** @inheritDoc */

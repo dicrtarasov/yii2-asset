@@ -20,14 +20,17 @@ use yii\web\JqueryAsset;
 class OwlCarouselAsset extends AssetBundle
 {
     /** @inheritDoc */
+    public $baseUrl = 'https://cdn.jsdelivr.net/npm/owl.carousel@2/dist';
+
+    /** @inheritDoc */
     public $css = [
-        'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css',
-        'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css'
+        'assets/owl.carousel.min.css',
+        'assets/owl.theme.default.min.css'
     ];
 
     /** @inheritDoc */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js'
+        'owl.carousel.min.js'
     ];
 
     /** @inheritDoc */

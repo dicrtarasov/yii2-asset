@@ -8,168 +8,209 @@
 (function (window, $) {
     'use strict';
 
-    /* Override jQuery-UI Resizable
-    if (typeof($.fn.resizable) === 'function') {
-        return;
-    }
-    */
+    /**
+     * Resizable.
+     *
+     * @param {HTMLElement} target
+     * @param {object} options
+     * @constructor
+     */
+    function Resizable(target, options)
+    {
+        const self = this;
 
-    $.fn.resizable = function (options) {
-        let opt = {
-            // selector for handle that starts dragging
+        /**
+         * Отмена события.
+         *
+         * @param e
+         */
+        self.prevent = function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        };
+
+        /**
+         * @param e
+         * @returns {{x: number, width: number, y: number, height: number}}
+         */
+        self.getMousePos = function (e) {
+            const pos = {
+                x: 0,
+                y: 0,
+                width: 0,
+                height: 0
+            };
+
+            if (typeof e.clientX === "number") {
+                pos.x = e.clientX;
+                pos.y = e.clientY;
+            } else if (e.originalEvent.touches) {
+                pos.x = e.originalEvent.touches[0].clientX;
+                pos.y = e.originalEvent.touches[0].clientY;
+            }
+
+            return pos;
+        };
+
+        /**
+         * @param e
+         */
+        self.doDrag = function (e) {
+            // если прошлое событие еще не обработано, то сохраняем и выходим
+            if (self.doDrag.lastEvent) {
+                self.doDrag.lastEvent = e;
+                return;
+            }
+
+            // сохраняем новое значение для обработки
+            self.doDrag.lastEvent = e;
+
+            // планируем обработку
+            window.requestAnimationFrame(function () {
+                // если нет необработанных событий, то выходим
+                if (!self.doDrag.lastEvent) {
+                    return;
+                }
+
+                const e = self.doDrag.lastEvent;
+
+                // очищаем необработанные события
+                self.doDrag.lastEvent = null;
+
+                const pos = self.getMousePos(e);
+                const css = {};
+
+                if (self.options.resizeWidth) {
+                    // noinspection NestedAssignmentJS,JSUnusedGlobalSymbols,AssignmentResultUsedJS
+                    css.width = css.minWidth = css.maxWidth = self.startPos.width + pos.x - self.startPos.x;
+                }
+
+                if (self.options.resizeHeight) {
+                    // noinspection NestedAssignmentJS,JSUnusedGlobalSymbols,AssignmentResultUsedJS
+                    css.height = css.minHeight = css.maxHeight = self.startPos.height + pos.y - self.startPos.y;
+                }
+
+                if (Object.keys(css).length > 0) {
+                    self.dom.css(css);
+                }
+
+                // обработчик пользователя
+                if (self.options.onDrag) {
+                    self.options.onDrag(e, self.dom, self.options);
+                }
+            });
+        };
+
+        /**
+         * @param e
+         */
+        self.startDragging = function (e) {
+            self.startPos = self.getMousePos(e);
+            self.startPos.width = Number(self.dom.outerWidth());
+            self.startPos.height = Number(self.dom.outerHeight());
+
+            if (self.options.onDragStart && self.options.onDragStart(e, self.dom, self.options) === false) {
+                return;
+            }
+
+            self.startTransition = self.dom.css("transition");
+            self.dom.css("transition", "none");
+
+            $(window.document).on('mousemove.rsz', self.doDrag);
+            $(window.document).on('mouseup.rsz', self.stopDragging);
+
+            if (window.Touch || navigator.maxTouchPoints) {
+                $(window.document).on('touchmove.rsz', self.doDrag);
+                $(window.document).on('touchend.rsz', self.stopDragging);
+            }
+
+            // noinspection JSCheckFunctionSignatures
+            $(window.document).on('selectstart.rsz', self.prevent); // disable selection
+        };
+
+        /**
+         * @param e
+         * @return {boolean}
+         */
+        self.stopDragging = function (e) {
+            self.prevent(e);
+
+            $(window.document).off('.rsz');
+
+            // reset changed values
+            self.dom.css("transition", self.startTransition);
+
+            if (self.options.onDragEnd) {
+                self.options.onDragEnd(e, self.dom, self.options);
+            }
+
+            return false;
+        };
+
+        self.options = {
+            /** @var {HTMLElement|null} selector for handle that starts dragging */
             handleSelector: null,
-            // resize the width
+
+            /** @var {boolean} resize the width */
             resizeWidth: true,
-            // resize the height
+
+            /** @var {boolean} resize the height */
             resizeHeight: true,
-            // hook into start drag operation (event passed)
+
+            /** @var {Function|null} hook into start drag operation (event passed) */
             onDragStart: null,
-            // hook into stop drag operation (event passed)
+
+            /** @var {Function|null} hook into stop drag operation (event passed) */
             onDragEnd: null,
-            // hook into each drag operation (event passed)
+
+            /** @var {Function|null} hook into each drag operation (event passed) */
             onDrag: null,
-            // disable touch-action on $handle
-            // prevents browser level actions like forward back gestures
+
+            /** @var {boolean} disable touch-action on $handle, prevents browser level actions like forward back gestures */
             touchActionNone: true
         };
 
         if (typeof options === "object") {
-            opt = $.extend(opt, options);
+            self.options = $.extend(self.options, options);
         }
 
+        /** @var начальная позиция и размеры перемещения */
+        self.startPos = {
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+        };
+
+        /** @var {string} */
+        self.startTransition = undefined;
+
+        /** @var {JQuery} */
+        self.dom = $(target);
+
+        /** @var {JQuery} */
+        self.dom.handle = self.options.handleSelector ? $(self.options.handleSelector) : self.dom;
+
+        if (self.options.touchActionNone) {
+            self.dom.handle.css("touch-action", "none");
+        }
+
+        self.dom.addClass("resizable");
+        self.dom.handle.on('mousedown touchstart', self.startDragging);
+    }
+
+
+    // noinspection JSValidateTypes
+
+    /**
+     * Плагин jQuery.
+     *
+     * @param {object} options
+     * @returns {JQuery}
+     */
+    $.fn.resizable = function (options) {
         return this.each(function () {
-            let startPos, startTransition;
-
-            const $el = $(this);
-            const $handle = opt.handleSelector ? $(opt.handleSelector) : $el;
-
-            if (opt.touchActionNone) {
-                $handle.css("touch-action", "none");
-            }
-
-            $el.addClass("resizable");
-            // noinspection JSCheckFunctionSignatures
-            $handle.on('mousedown.rsz touchstart.rsz', startDragging);
-
-            /**
-             * Отмена события.
-             *
-             * @param e
-             */
-            function prevent(e)
-            {
-                e.stopPropagation();
-                e.preventDefault();
-            }
-
-            function startDragging(e)
-            {
-                startPos = getMousePos(e);
-                startPos.width = Number($el.outerWidth());
-                startPos.height = Number($el.outerHeight());
-
-                if (opt.onDragStart && opt.onDragStart(e, $el, opt) === false) {
-                    return;
-                }
-
-                startTransition = $el.css("transition");
-                $el.css("transition", "none");
-
-                opt.dragFunc = doDrag;
-
-                // noinspection JSCheckFunctionSignatures
-                $(window.document).on('mousemove.rsz', opt.dragFunc);
-                $(window.document).on('mouseup.rsz', stopDragging);
-
-                if (window.Touch || navigator.maxTouchPoints) {
-                    // noinspection JSCheckFunctionSignatures
-                    $(window.document).on('touchmove.rsz', opt.dragFunc);
-                    $(window.document).on('touchend.rsz', stopDragging);
-                }
-
-                // noinspection JSCheckFunctionSignatures
-                $(window.document).on('selectstart.rsz', prevent); // disable selection
-            }
-
-            function doDrag(e)
-            {
-                // если прошлое событие еще не обработано, то сохраняем и выходим
-                if (doDrag.e) {
-                    doDrag.e = e;
-                    return;
-                }
-
-                // сохраняем новое значение для обработки
-                doDrag.e = e;
-
-                // планируем обработку
-                window.requestAnimationFrame(function () {
-                    // если нет необработанных событий, то выходим
-                    const e = doDrag.e || null;
-                    if (!e) {
-                        return;
-                    }
-
-                    // очищаем необработанные события
-                    doDrag.e = null;
-
-                    const pos = getMousePos(e);
-                    const css = {};
-
-                    if (opt.resizeWidth) {
-                        // noinspection NestedAssignmentJS,JSUnusedGlobalSymbols,AssignmentResultUsedJS,JSUnresolvedVariable
-                        css.width = css.minWidth = css.maxWidth = startPos.width + pos.x - startPos.x;
-                    }
-
-                    if (opt.resizeHeight) {
-                        // noinspection NestedAssignmentJS,AssignmentResultUsedJS,JSUnusedGlobalSymbols
-                        css.height = css.minHeight = css.maxHeight = startPos.height + pos.y - startPos.y;
-                    }
-
-                    if (Object.keys(css).length > 0) {
-                        $el.css(css);
-                    }
-
-                    // обработчик пользователя
-                    if (opt.onDrag) {
-                        opt.onDrag(e, $el, opt);
-                    }
-                });
-            }
-
-            function stopDragging(e)
-            {
-                e.stopPropagation();
-                e.preventDefault();
-
-                $(window.document).off('.rsz');
-
-                // reset changed values
-                $el.css("transition", startTransition);
-
-                if (opt.onDragEnd) {
-                    opt.onDragEnd(e, $el, opt);
-                }
-
-                return false;
-            }
-
-            function getMousePos(e)
-            {
-                const pos = {x: 0, y: 0, width: 0, height: 0};
-
-                if (typeof e.clientX === "number") {
-                    pos.x = e.clientX;
-                    pos.y = e.clientY;
-                } else if (e.originalEvent.touches) {
-                    pos.x = e.originalEvent.touches[0].clientX;
-                    pos.y = e.originalEvent.touches[0].clientY;
-                } else {
-                    return null;
-                }
-
-                return pos;
-            }
+            $(this).data('widget', new Resizable(this, options));
         });
     };
 })(window, jQuery);

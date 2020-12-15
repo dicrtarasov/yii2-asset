@@ -28,8 +28,11 @@ use yii\web\JqueryAsset;
 class InputMaskAsset extends AssetBundle
 {
     /** @inheritDoc */
+    public $baseUrl = 'https://cdn.jsdelivr.net/npm/inputmask@5/dist';
+
+    /** @inheritDoc */
     public $js = [
-        'https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.5/jquery.inputmask.min.js'
+        'jquery.inputmask.min.js'
     ];
 
     /** @inheritDoc */
