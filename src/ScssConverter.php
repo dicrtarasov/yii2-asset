@@ -3,7 +3,7 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 13.08.20 00:05:05
+ * @version 17.12.20 13:12:14
  */
 
 declare(strict_types = 1);
@@ -46,12 +46,6 @@ class ScssConverter extends Component implements AssetConverterInterface
     public $sourceMap;
 
     /**
-     * @var bool перекомпилировать, независимо от времени модификации источника.
-     * Требуется при разработке, так как файл может включать другие, изменение которых отследить нельзя.
-     */
-    public $force;
-
-    /**
      * @var string[] список зависимостей
      * Если список зависимостей общий и фиксированный, то чтобы при разработке не включать force,
      * можно определить файлы, изменения которых отслеживать для перекомпиляции.
@@ -60,18 +54,25 @@ class ScssConverter extends Component implements AssetConverterInterface
     public $depends = [];
 
     /**
+     * @var bool перекомпилировать, независимо от времени модификации источника.
+     * Требуется при разработке, если не задано `depends` так как файл может включать другие,
+     * изменение которых отследить нельзя.
+     */
+    public $force;
+
+    /**
      * @inheritDoc
      */
     public function init() : void
     {
         parent::init();
 
-        if (! isset($this->sourceMap)) {
-            $this->sourceMap = YII_ENV_DEV;
+        if ($this->outputStyle === null) {
+            $this->outputStyle = YII_ENV_DEV ? OutputStyle::EXPANDED : OutputStyle::COMPRESSED;
         }
 
-        if (! isset($this->outputStyle)) {
-            $this->outputStyle = YII_ENV_DEV ? OutputStyle::EXPANDED : OutputStyle::COMPRESSED;
+        if (! isset($this->sourceMap)) {
+            $this->sourceMap = YII_ENV_DEV;
         }
 
         if (! isset($this->force)) {
@@ -91,6 +92,10 @@ class ScssConverter extends Component implements AssetConverterInterface
             }
 
             unset($alias);
+        }
+
+        if ($this->force === null) {
+            $this->force = YII_ENV_DEV && empty($this->depends);
         }
     }
 

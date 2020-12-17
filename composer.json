@@ -26,7 +26,7 @@
     "require": {
         "php": "~7.3",
         "yiisoft/yii2": "~2.0",
-        "scssphp/scssphp": "~1.4"
+        "scssphp/scssphp": "~v1.4"
     },
     "require-dev": {
         "phpunit/phpunit": "~9.5"
