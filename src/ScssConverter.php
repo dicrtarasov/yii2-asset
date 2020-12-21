@@ -3,7 +3,7 @@
  * @copyright 2019-2020 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 17.12.20 13:12:14
+ * @version 22.12.20 04:45:36
  */
 
 declare(strict_types = 1);
@@ -71,12 +71,8 @@ class ScssConverter extends Component implements AssetConverterInterface
             $this->outputStyle = YII_ENV_DEV ? OutputStyle::EXPANDED : OutputStyle::COMPRESSED;
         }
 
-        if (! isset($this->sourceMap)) {
+        if ($this->sourceMap === null) {
             $this->sourceMap = YII_ENV_DEV;
-        }
-
-        if (! isset($this->force)) {
-            $this->force = YII_ENV_DEV;
         }
 
         // проверяем файлы зависимостей
