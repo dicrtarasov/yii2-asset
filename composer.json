@@ -24,7 +24,7 @@
         "psr-4": {"dicr\\tests\\": "tests/"}
     },
     "require": {
-        "php": "~7.3",
+        "php": "~7.4 || ~8.0.0",
         "yiisoft/yii2": "~2.0",
         "scssphp/scssphp": "~v1.4"
     },

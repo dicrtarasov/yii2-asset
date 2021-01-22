@@ -1,4 +1,5 @@
-/vendor/
+/vendor/*
+/runtime/*
 /.phpunit.result.cache
 *.css
 *.map

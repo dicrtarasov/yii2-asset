@@ -1,10 +1,11 @@
 /*
- * @copyright 2019-2020 Dicr http://dicr.org
+ * @copyright 2019-2021 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 26.07.20 11:02:59
+ * @version 22.01.21 15:58:37
  */
 
+// noinspection ES6ConvertRequireIntoImport
 (function (deparam) {
     "use strict";
 
@@ -18,7 +19,7 @@
             // noop
         }
 
-        // noinspection JSUnusedGlobalSymbols
+        // noinspection JSUnusedGlobalSymbols,JSUnresolvedVariable
         module.exports = deparam(jquery);
     } else {
         // noinspection JSUnresolvedVariable
@@ -47,7 +48,6 @@
         params.replace(/\+/g, ' ').split('&').forEach(function (v) {
             const param = v.split('=');
             let key = decodeURIComponent(param[0]);
-            let val;
             let cur = obj;
             let i = 0;
 
@@ -74,13 +74,15 @@
 
             // Are we dealing with a name=value pair, or just a name?
             if (param.length === 2) {
-                val = decodeURIComponent(param[1]);
-
-                // Coerce values.
-                if (coerce) {
-                    val = val && !isNaN(val) && ((+val + '') === val) ? +val        // number
-                        : val === 'undefined' ? undefined         // undefined
-                            : coerceTypes[val] === undefined ? val : coerceTypes[val];                                                          // string
+                let val = decodeURIComponent(param[1]); // Coerce values.
+                if (coerce && val !== undefined && val !== null) {
+                    if (val === 'undefined') {
+                        val = undefined;
+                    } else if (!isNaN(Number(val))) {
+                        val = Number(val);
+                    } else if (typeof coerceTypes[val] !== 'undefined') {
+                        val = coerceTypes[val];
+                    }
                 }
 
                 if (keysLast) {
