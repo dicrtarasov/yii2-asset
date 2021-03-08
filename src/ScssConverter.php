@@ -1,9 +1,9 @@
 <?php
 /*
- * @copyright 2019-2020 Dicr http://dicr.org
+ * @copyright 2019-2021 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 22.12.20 04:45:36
+ * @version 08.03.21 17:03:35
  */
 
 declare(strict_types = 1);
@@ -40,10 +40,10 @@ use const YII_ENV_DEV;
 class ScssConverter extends Component implements AssetConverterInterface
 {
     /** @var string стиль вывода (ScssPhp\ScssPhp\OutputStyle::*) */
-    public $outputStyle;
+    public $outputStyle = OutputStyle::COMPRESSED;
 
     /** @var bool включить генерацию карт */
-    public $sourceMap;
+    public $sourceMap = YII_ENV_DEV;
 
     /**
      * @var string[] список зависимостей
@@ -66,14 +66,6 @@ class ScssConverter extends Component implements AssetConverterInterface
     public function init() : void
     {
         parent::init();
-
-        if ($this->outputStyle === null) {
-            $this->outputStyle = YII_ENV_DEV ? OutputStyle::EXPANDED : OutputStyle::COMPRESSED;
-        }
-
-        if ($this->sourceMap === null) {
-            $this->sourceMap = YII_ENV_DEV;
-        }
 
         // проверяем файлы зависимостей
         if (! empty($this->depends)) {
