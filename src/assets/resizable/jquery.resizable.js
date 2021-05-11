@@ -1,8 +1,8 @@
 /*
- * @copyright 2019-2020 Dicr http://dicr.org
+ * @copyright 2019-2021 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 26.07.20 11:27:39
+ * @version 11.05.21 06:00:29
  */
 
 (function (window, $) {
@@ -18,6 +18,47 @@
     function Resizable(target, options)
     {
         const self = this;
+
+        self.options = $.extend({
+            /** @var {HTMLElement|null} selector for handle that starts dragging */
+            handleSelector: null,
+
+            /** @var {boolean} resize the width */
+            resizeWidth: true,
+
+            /** @var {boolean} resize the height */
+            resizeHeight: true,
+
+            /** @var {Function|null} hook into start drag operation (event passed) */
+            onDragStart: null,
+
+            /** @var {Function|null} hook into stop drag operation (event passed) */
+            onDragEnd: null,
+
+            /** @var {Function|null} hook into each drag operation (event passed) */
+            onDrag: null,
+
+            /** @var {boolean} disable touch-action on $handle, prevents browser level actions like forward back gestures */
+            touchActionNone: true
+        }, typeof options === "object" ? options : {});
+
+        /** начальная позиция и размеры перемещения */
+        self.startPos = {
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+        };
+
+        /** @type {string} */
+        self.startTransition = undefined;
+
+        /** @type {JQuery} */
+        self.dom = $(target);
+
+        // noinspection JSUnresolvedVariable
+        /** @type {JQuery} */
+        self.dom.$handle = self.options.handleSelector ? $(self.options.handleSelector) : self.dom;
 
         /**
          * Отмена события.
@@ -116,10 +157,12 @@
             self.startTransition = self.dom.css("transition");
             self.dom.css("transition", "none");
 
+            // noinspection JSCheckFunctionSignatures
             $(window.document).on('mousemove.rsz', self.doDrag);
             $(window.document).on('mouseup.rsz', self.stopDragging);
 
             if (window.Touch || navigator.maxTouchPoints) {
+                // noinspection JSCheckFunctionSignatures
                 $(window.document).on('touchmove.rsz', self.doDrag);
                 $(window.document).on('touchend.rsz', self.stopDragging);
             }
@@ -147,56 +190,15 @@
             return false;
         };
 
-        self.options = {
-            /** @var {HTMLElement|null} selector for handle that starts dragging */
-            handleSelector: null,
-
-            /** @var {boolean} resize the width */
-            resizeWidth: true,
-
-            /** @var {boolean} resize the height */
-            resizeHeight: true,
-
-            /** @var {Function|null} hook into start drag operation (event passed) */
-            onDragStart: null,
-
-            /** @var {Function|null} hook into stop drag operation (event passed) */
-            onDragEnd: null,
-
-            /** @var {Function|null} hook into each drag operation (event passed) */
-            onDrag: null,
-
-            /** @var {boolean} disable touch-action on $handle, prevents browser level actions like forward back gestures */
-            touchActionNone: true
-        };
-
-        if (typeof options === "object") {
-            self.options = $.extend(self.options, options);
-        }
-
-        /** @var начальная позиция и размеры перемещения */
-        self.startPos = {
-            x: 0,
-            y: 0,
-            width: 0,
-            height: 0,
-        };
-
-        /** @var {string} */
-        self.startTransition = undefined;
-
-        /** @var {JQuery} */
-        self.dom = $(target);
-
-        /** @var {JQuery} */
-        self.dom.handle = self.options.handleSelector ? $(self.options.handleSelector) : self.dom;
-
         if (self.options.touchActionNone) {
-            self.dom.handle.css("touch-action", "none");
+            // noinspection JSUnresolvedVariable
+            self.dom.$handle.css("touch-action", "none");
         }
 
         self.dom.addClass("resizable");
-        self.dom.handle.on('mousedown touchstart', self.startDragging);
+
+        // noinspection JSUnresolvedVariable
+        self.dom.$handle.on('mousedown touchstart', self.startDragging);
     }
 
 
