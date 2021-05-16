@@ -30,7 +30,7 @@
     "require": {
         "php": "~7.4 || ~8.0.0",
         "yiisoft/yii2": "~2.0",
-        "scssphp/scssphp": "~v1.4"
+        "scssphp/scssphp": "~v1.5"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
