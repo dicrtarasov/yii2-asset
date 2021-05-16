@@ -3,7 +3,7 @@
  * @copyright 2019-2021 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 17.05.21 02:09:22
+ * @version 17.05.21 03:24:04
  */
 
 declare(strict_types = 1);
@@ -16,21 +16,21 @@ use Throwable;
 use Yii;
 use yii\base\Component;
 use yii\base\Exception;
-use yii\helpers\FileHelper;
 use yii\web\AssetConverterInterface;
 
 use function array_unique;
+use function basename;
 use function dirname;
 use function file_get_contents;
 use function file_put_contents;
 use function filemtime;
 use function is_file;
-use function strrpos;
-use function strtolower;
-use function substr;
+use function ltrim;
+use function pathinfo;
 
 use const DIRECTORY_SEPARATOR;
 use const LOCK_EX;
+use const PATHINFO_EXTENSION;
 use const YII_ENV_DEV;
 
 /**
@@ -120,27 +120,21 @@ class ScssConverter extends Component implements AssetConverterInterface
     protected function convertAsset(string $basePath, string $asset): string
     {
         // получаем название файла результата
-        $cssName = $this->cssName($asset);
-        if ($cssName === null) {
+        $cssUrl = $this->cssUrl($asset);
+        if ($cssUrl === null) {
             return $asset;
         }
 
         // абсолютный путь исходного файла
-        $scssPath = $basePath . '/' . $asset;
+        $scssPath = $basePath . DIRECTORY_SEPARATOR . ltrim($asset, DIRECTORY_SEPARATOR);
 
         // если исходный файл не существует то ошибка
         if (! is_file($scssPath)) {
             throw new Exception('Исходный файл не найден: ' . $scssPath);
         }
 
-        // абсолютный путь результата
-        $cssPath = $this->resultPath($cssName);
-        $cssUrl = $this->resultUrl($cssName);
-
-        $cssDir = dirname($cssPath);
-        if (! FileHelper::createDirectory($cssDir, 0755)) {
-            throw new Exception('Ошибка создания директории: ' . $cssDir);
-        }
+        // результаты
+        $cssPath = $basePath . DIRECTORY_SEPARATOR . ltrim($cssUrl, DIRECTORY_SEPARATOR);
 
         // если нужно перекомпилировать
         if ($this->needRecompile($scssPath, $cssPath)) {
@@ -157,26 +151,26 @@ class ScssConverter extends Component implements AssetConverterInterface
                 dirname($scssPath)
             ]));
 
-            // source map
-            $mapName = $cssName . '.map';
-            $mapPath = $this->resultPath($mapName);
-            $mapUrl = $this->resultUrl($mapName);
+            // source map paths
+            $mapUrl = $cssUrl . '.map';
+            $mapPath = $cssPath . '.map';
 
+            // source map options
             $compiler->setSourceMapOptions([
                 // absolute path to write .map file
                 'sourceMapWriteTo' => $mapPath,
 
                 // relative or full url to the above .map file
-                'sourceMapURL' => $mapUrl,
+                'sourceMapURL' => basename($mapUrl),
 
                 // (optional) relative or full url to the .css file
-                'sourceMapFilename' => $cssUrl,
+                'sourceMapFilename' => basename($cssUrl),
 
-                // базовый путь исходного файла
-                'sourceMapBasepath' => dirname($scssPath),
+                // partial path (server root) removed (normalized) to create a relative url
+                'sourceMapBasepath' => $basePath,
 
                 // (optional) prepended to 'source' field entries for relocating source files
-                'sourceRoot' => '/'
+                //'sourceRoot' => '/'
             ]);
 
             // компилируем
@@ -199,7 +193,7 @@ class ScssConverter extends Component implements AssetConverterInterface
             Yii::debug('SCSS скомпилирован в : ' . $cssPath, __METHOD__);
         }
 
-        return $cssName;
+        return $cssUrl;
     }
 
     /**
@@ -225,50 +219,17 @@ class ScssConverter extends Component implements AssetConverterInterface
     }
 
     /**
-     * Возвращает имя файла результата (меняет scss на css).
+     * Возвращает путь и url файла css из scss или null, если файл не scss.
      *
-     * @param string $asset относительный путь источника
-     * @return ?string относительный путь результата или null, если конвертация не требуется
+     * @param string $scssPath относительный путь источника
+     * @return string|null относительный путь результата или null, если конвертация не требуется
      */
-    protected function cssName(string $asset): ?string
+    protected function cssUrl(string $scssPath): ?string
     {
-        // позиция расширения файла
-        $pos = strrpos($asset, '.');
-        if ($pos !== false) {
-            // проверяем правильность расширения
-            $ext = substr($asset, $pos + 1);
-            if (strtolower($ext) === 'scss') {
-                return substr($asset, 0, $pos) . '.css';
-            }
-        }
+        // если файл не SCSS, то возвращаем null
+        $ext = pathinfo($scssPath, PATHINFO_EXTENSION);
 
-        return null;
-    }
-
-    /**
-     * Возвращает полный путь результата.
-     *
-     * @param string $path
-     * @return string
-     */
-    protected function resultPath(string $path): string
-    {
-        $assetManager = Yii::$app->assetManager;
-
-        return Yii::getAlias($assetManager->basePath . DIRECTORY_SEPARATOR . ltrim($path, DIRECTORY_SEPARATOR));
-    }
-
-    /**
-     * Возвращает полный URL результата.
-     *
-     * @param string $path относительный путь css
-     * @return string
-     */
-    protected function resultUrl(string $path): string
-    {
-        $assetManager = Yii::$app->assetManager;
-
-        return Yii::getAlias($assetManager->baseUrl . '/' . ltrim($path, '/'));
+        return $ext === '' || strtolower($ext) !== 'scss' ? null : $scssPath . '.css';
     }
 
     /**
