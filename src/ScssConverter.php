@@ -3,7 +3,7 @@
  * @copyright 2019-2021 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 17.05.21 03:24:04
+ * @version 26.05.21 17:15:40
  */
 
 declare(strict_types = 1);
@@ -27,6 +27,7 @@ use function filemtime;
 use function is_file;
 use function ltrim;
 use function pathinfo;
+use function strtolower;
 
 use const DIRECTORY_SEPARATOR;
 use const LOCK_EX;
@@ -167,7 +168,7 @@ class ScssConverter extends Component implements AssetConverterInterface
                 'sourceMapFilename' => basename($cssUrl),
 
                 // partial path (server root) removed (normalized) to create a relative url
-                'sourceMapBasepath' => $basePath,
+                'sourceMapBasepath' => dirname($mapPath),
 
                 // (optional) prepended to 'source' field entries for relocating source files
                 //'sourceRoot' => '/'
