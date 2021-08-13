@@ -3,7 +3,7 @@
  * @copyright 2019-2021 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 26.05.21 17:15:40
+ * @version 14.08.21 00:23:29
  */
 
 declare(strict_types = 1);
@@ -120,27 +120,33 @@ class ScssConverter extends Component implements AssetConverterInterface
      */
     protected function convertAsset(string $basePath, string $asset): string
     {
-        // получаем название файла результата
-        $cssUrl = $this->cssUrl($asset);
-        if ($cssUrl === null) {
+        // проверяем расширение файла ресурса
+        $ext = pathinfo($asset, PATHINFO_EXTENSION);
+        if (strtolower($ext) !== 'scss') {
             return $asset;
         }
 
-        // абсолютный путь исходного файла
+        // файл SCSS
+        $scssUrl = $asset;
         $scssPath = $basePath . DIRECTORY_SEPARATOR . ltrim($asset, DIRECTORY_SEPARATOR);
+
+        // файл CSS
+        $cssUrl = $scssUrl . '.css';
+        $cssPath = $scssPath . '.css';
+
+        // файл MAP
+        $mapUrl = $scssUrl . '.map';
+        $mapPath = $scssPath . '.map';
 
         // если исходный файл не существует то ошибка
         if (! is_file($scssPath)) {
             throw new Exception('Исходный файл не найден: ' . $scssPath);
         }
 
-        // результаты
-        $cssPath = $basePath . DIRECTORY_SEPARATOR . ltrim($cssUrl, DIRECTORY_SEPARATOR);
-
         // если нужно перекомпилировать
         if ($this->needRecompile($scssPath, $cssPath)) {
             // читаем файл
-            $scss = @file_get_contents($scssPath);
+            $scss = file_get_contents($scssPath);
             if ($scss === false) {
                 throw new Exception('Ошибка чтения ресурса: ' . $scssPath);
             }
@@ -151,10 +157,6 @@ class ScssConverter extends Component implements AssetConverterInterface
             $compiler->setImportPaths(array_unique([
                 dirname($scssPath)
             ]));
-
-            // source map paths
-            $mapUrl = $cssUrl . '.map';
-            $mapPath = $cssPath . '.map';
 
             // source map options
             $compiler->setSourceMapOptions([
@@ -182,12 +184,12 @@ class ScssConverter extends Component implements AssetConverterInterface
             }
 
             // сохраняем css-файл
-            if (@file_put_contents($cssPath, $result->getCss(), LOCK_EX) === false) {
+            if (file_put_contents($cssPath, $result->getCss(), LOCK_EX) === false) {
                 throw new Exception('Ошибка записи ресурса: ' . $cssPath);
             }
 
             // сохраняем map-файл
-            if ($this->sourceMap && @file_put_contents($mapPath, $result->getSourceMap(), LOCK_EX) === false) {
+            if ($this->sourceMap && file_put_contents($mapPath, $result->getSourceMap(), LOCK_EX) === false) {
                 throw new Exception('Ошибка записи ресурса: ' . $mapPath);
             }
 
@@ -217,20 +219,6 @@ class ScssConverter extends Component implements AssetConverterInterface
         );
 
         return $compiler;
-    }
-
-    /**
-     * Возвращает путь и url файла css из scss или null, если файл не scss.
-     *
-     * @param string $scssPath относительный путь источника
-     * @return string|null относительный путь результата или null, если конвертация не требуется
-     */
-    protected function cssUrl(string $scssPath): ?string
-    {
-        // если файл не SCSS, то возвращаем null
-        $ext = pathinfo($scssPath, PATHINFO_EXTENSION);
-
-        return $ext === '' || strtolower($ext) !== 'scss' ? null : $scssPath . '.css';
     }
 
     /**
