@@ -3,7 +3,7 @@
  * @copyright 2019-2021 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 14.08.21 00:23:29
+ * @version 14.08.21 00:28:39
  */
 
 declare(strict_types = 1);
@@ -46,7 +46,7 @@ class ScssConverter extends Component implements AssetConverterInterface
     public $outputStyle = OutputStyle::COMPRESSED;
 
     /** @var bool включить генерацию карт */
-    public $sourceMap = YII_ENV_DEV;
+    public $sourceMap = true;
 
     /**
      * @var string[] список зависимостей
