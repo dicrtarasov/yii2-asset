@@ -1,14 +1,15 @@
 <?php
-/**
- * @copyright 2019-2020 Dicr http://dicr.org
+/*
+ * @copyright 2019-2021 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 08.07.20 06:15:10
+ * @version 12.08.21 23:17:18
  */
 
 declare(strict_types = 1);
 namespace dicr\asset;
 
+use yii\bootstrap5\BootstrapAsset;
 use yii\web\AssetBundle;
 use yii\web\JqueryAsset;
 
@@ -33,6 +34,6 @@ class SummernoteAsset extends AssetBundle
     /** @inheritDoc */
     public $depends = [
         JqueryAsset::class,
-        'yii\bootstrap4\BootstrapAsset'
+        BootstrapAsset::class
     ];
 }
