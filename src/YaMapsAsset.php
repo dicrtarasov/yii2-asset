@@ -1,15 +1,16 @@
 <?php
-/**
- * @copyright 2019-2020 Dicr http://dicr.org
+/*
+ * @copyright 2019-2022 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 08.07.20 06:15:14
+ * @version 04.01.22 16:20:48
  */
 
-declare(strict_types=1);
+declare(strict_types = 1);
 namespace dicr\asset;
 
 use yii\web\AssetBundle;
+
 use function is_array;
 
 /**
@@ -18,20 +19,21 @@ use function is_array;
  * Для установки параметров в значения по-умолчанию можно наследовать класс.
  *
  * @link https://tech.yandex.ru/maps/doc/jsapi/2.1/dg/concepts/load-docpage/
+ * @noinspection PhpUnused
  */
 class YaMapsAsset extends AssetBundle
 {
     /** @inheritDoc */
     public $baseUrl = 'https://api-maps.yandex.ru';
 
-    /** @var string загружаемая версия */
-    public $version = '2.1';
+    /** @var ?string загружаемая версия */
+    public ?string $version = '2.1';
 
-    /** @var string ключ API */
-    public $apikey;
+    /** @var ?string ключ API */
+    public ?string $apikey = null;
 
-    /** @var string язык, регион */
-    public $lang = 'ru_RU';
+    /** @var ?string язык, регион */
+    public ?string $lang = 'ru_RU';
 
     /** @var string порядок координат: широта, долгота */
     public const COORDORDER_LATLONG = 'latlong';
@@ -39,8 +41,8 @@ class YaMapsAsset extends AssetBundle
     /** @var string порядок координат: долгота, широта */
     public const COORDORDER_LONGLAT = 'longlat';
 
-    /** @var string порядок координат */
-    public $coordorder;
+    /** @var ?string порядок координат */
+    public ?string $coordorder = null;
 
     /** @var string режим отладочной версии */
     public const MODE_DEBUG = 'debug';
@@ -48,16 +50,16 @@ class YaMapsAsset extends AssetBundle
     /** @var string режим релиза */
     public const MODE_RELEASE = 'release';
 
-    /** @var string отладочная/релиз-версия */
-    public $mode;
+    /** @var ?string отладочная/релиз-версия */
+    public ?string $mode;
 
     /** @var string[]|string загружаемые модули */
-    public $load;
+    public string|array|null $load = null;
 
     /**
      * @inheritDoc
      */
-    public function init() : void
+    public function init(): void
     {
         // формируем путь скрипта
         $js = $this->baseUrl;
@@ -65,12 +67,11 @@ class YaMapsAsset extends AssetBundle
         // путь
         $path = [];
 
-        $this->version = trim($this->version);
-        if (!empty($this->version)) {
+        if ($this->version !== null) {
             $path[] = $this->version;
         }
 
-        if (!empty($path)) {
+        if (! empty($path)) {
             $js .= '/' . implode($path) . '/';
         }
 
@@ -82,13 +83,13 @@ class YaMapsAsset extends AssetBundle
         $query = [];
 
         foreach (['apikey', 'lang', 'coordorder', 'mode', 'load'] as $field) {
-            $this->{$field} = trim($this->{$field} ?? '');
-            if ($this->{$field} !== '') {
+            $field = (string)$this->{$field};
+            if ($field !== '') {
                 $query[$field] = $this->{$field};
             }
         }
 
-        if (!empty($query)) {
+        if (! empty($query)) {
             $js .= '?' . http_build_query($query);
         }
 

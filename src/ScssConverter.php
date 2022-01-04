@@ -1,9 +1,9 @@
 <?php
 /*
- * @copyright 2019-2021 Dicr http://dicr.org
+ * @copyright 2019-2022 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 26.05.21 17:15:40
+ * @version 04.01.22 16:07:12
  */
 
 declare(strict_types = 1);
@@ -43,10 +43,10 @@ use const YII_ENV_DEV;
 class ScssConverter extends Component implements AssetConverterInterface
 {
     /** @var string стиль вывода (ScssPhp\ScssPhp\OutputStyle::*) */
-    public $outputStyle = OutputStyle::COMPRESSED;
+    public string $outputStyle = OutputStyle::COMPRESSED;
 
     /** @var bool включить генерацию карт */
-    public $sourceMap = YII_ENV_DEV;
+    public bool $sourceMap = YII_ENV_DEV;
 
     /**
      * @var string[] список зависимостей
@@ -54,14 +54,14 @@ class ScssConverter extends Component implements AssetConverterInterface
      * можно определить файлы, изменения которых отслеживать для перекомпиляции.
      * Можно указывать через алиасы как например '@webroot/res/...'
      */
-    public $depends = [];
+    public array $depends = [];
 
     /**
      * @var bool перекомпилировать, независимо от времени модификации источника.
      * Требуется при разработке, если не задано `depends` так как файл может включать другие,
      * изменение которых отследить нельзя.
      */
-    public $force;
+    public bool $force;
 
     /**
      * @inheritDoc
@@ -85,7 +85,7 @@ class ScssConverter extends Component implements AssetConverterInterface
             unset($alias);
         }
 
-        if ($this->force === null) {
+        if (! isset($this->force)) {
             $this->force = YII_ENV_DEV && empty($this->depends);
         }
     }
@@ -177,7 +177,7 @@ class ScssConverter extends Component implements AssetConverterInterface
             // компилируем
             try {
                 $result = $compiler->compileString($scss, $scssPath);
-            } catch (SassException | Throwable $ex) {
+            } catch (SassException|Throwable $ex) {
                 throw new Exception('Ошибка компиляции ресурса: ' . $scssPath . ': ' . $ex);
             }
 
@@ -248,7 +248,7 @@ class ScssConverter extends Component implements AssetConverterInterface
         }
 
         // проверяем модификацию файла-источника вместе с остальными статическими зависимостями
-        $depends = (array)($this->depends ?: []);
+        $depends = $this->depends;
         $depends[] = $src;
         $dstTime = @filemtime($dst);
 

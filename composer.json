@@ -9,7 +9,7 @@
         {
             "name": "Igor Tarasov",
             "email": "develop@dicr.org",
-            "homepage": "http://dicr.org",
+            "homepage": "https://dicr.org",
             "role": "developer"
         }
     ],
@@ -28,9 +28,9 @@
     },
 
     "require": {
-        "php": "~7.4 || ~8.0.0",
+        "php": "~8.0",
         "yiisoft/yii2": "~2.0",
-        "scssphp/scssphp": "~v1.5"
+        "scssphp/scssphp": "~1.9"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

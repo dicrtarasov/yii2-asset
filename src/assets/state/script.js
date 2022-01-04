@@ -1,11 +1,11 @@
 /*
- * @copyright 2019-2021 Dicr http://dicr.org
+ * @copyright 2019-2022 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 11.05.21 05:49:29
+ * @version 04.01.22 16:15:12
  */
 
-(function (window, $) {
+((window, $) => {
     "use strict";
 
     /**
@@ -26,10 +26,10 @@
          *
          * @param {object} data
          */
-        self.update = function (data) {
+        self.update = data => {
             const updates = {};
 
-            Object.keys(data).forEach(function (key) {
+            Object.keys(data).forEach(key => {
                 if (!self.data.hasOwnProperty(key) || self.data[key] !== data[key]) {
                     self.data[key] = data[key];
                     updates[key] = data[key];

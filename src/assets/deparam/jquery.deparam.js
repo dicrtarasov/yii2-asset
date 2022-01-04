@@ -1,20 +1,22 @@
 /*
- * @copyright 2019-2021 Dicr http://dicr.org
+ * @copyright 2019-2022 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 22.01.21 15:58:37
+ * @version 04.01.22 16:05:33
  */
 
 // noinspection ES6ConvertRequireIntoImport
-(function (deparam) {
+(deparam => {
     "use strict";
 
     // noinspection JSUnresolvedVariable
     if (typeof require === 'function' && typeof exports === 'object' && typeof module === 'object') {
+        let jquery;
+
         // noinspection UnusedCatchParameterJS
         try {
             // noinspection ES6ConvertVarToLetConst,JSUnresolvedFunction,NpmUsedModulesInstalled
-            var jquery = require('jquery');
+            jquery = require('jquery');
         } catch (e) {
             // noop
         }
@@ -25,18 +27,16 @@
         // noinspection JSUnresolvedVariable
         if (typeof define === 'function' && define.amd) {
             // noinspection JSUnresolvedFunction
-            define(['jquery'], function (jquery) {
-                return deparam(jquery);
-            });
+            define(['jquery'], jquery => deparam(jquery));
         } else {
             // noinspection JSUnusedGlobalSymbols
             window.deparam = deparam($); // assume jQuery is in global namespace
         }
     }
-})(function ($) {
+})($ => {
     "use strict";
 
-    const deparam = function (params, coerce) {
+    const deparam = (params, coerce) => {
         // noinspection AssignmentToFunctionParameterJS
         params = params ? String(params) : '';
 
@@ -45,7 +45,7 @@
 
         // Iterate over all name=value pairs.
         // noinspection OverlyComplexFunctionJS
-        params.replace(/\+/g, ' ').split('&').forEach(function (v) {
+        params.replace(/[+]/g, ' ').split('&').forEach(v => {
             const param = v.split('=');
             let key = decodeURIComponent(param[0]);
             let cur = obj;

@@ -1,11 +1,11 @@
 /*
- * @copyright 2019-2021 Dicr http://dicr.org
+ * @copyright 2019-2022 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 11.05.21 06:00:29
+ * @version 04.01.22 16:15:12
  */
 
-(function (window, $) {
+((window, $) => {
     'use strict';
 
     /**
@@ -63,18 +63,18 @@
         /**
          * Отмена события.
          *
-         * @param e
+         * @param {Event} e
          */
-        self.prevent = function (e) {
+        self.prevent = e => {
             e.stopPropagation();
             e.preventDefault();
         };
 
         /**
-         * @param e
+         * @param {MouseEvent|JQueryMouseEventObject} e
          * @returns {{x: number, width: number, y: number, height: number}}
          */
-        self.getMousePos = function (e) {
+        self.getMousePos = e => {
             const pos = {
                 x: 0,
                 y: 0,
@@ -94,9 +94,9 @@
         };
 
         /**
-         * @param e
+         * @param {MouseEvent} e
          */
-        self.doDrag = function (e) {
+        self.doDrag = e => {
             // если прошлое событие еще не обработано, то сохраняем и выходим
             if (self.doDrag.lastEvent) {
                 self.doDrag.lastEvent = e;
@@ -107,7 +107,7 @@
             self.doDrag.lastEvent = e;
 
             // планируем обработку
-            window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(() => {
                 // если нет необработанных событий, то выходим
                 if (!self.doDrag.lastEvent) {
                     return;
@@ -143,9 +143,9 @@
         };
 
         /**
-         * @param e
+         * @param {DragEvent} e
          */
-        self.startDragging = function (e) {
+        self.startDragging = e => {
             self.startPos = self.getMousePos(e);
             self.startPos.width = Number(self.dom.outerWidth());
             self.startPos.height = Number(self.dom.outerHeight());
@@ -172,10 +172,10 @@
         };
 
         /**
-         * @param e
+         * @param {DragEvent} e
          * @return {boolean}
          */
-        self.stopDragging = function (e) {
+        self.stopDragging = e => {
             self.prevent(e);
 
             $(window.document).off('.rsz');

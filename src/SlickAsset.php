@@ -1,9 +1,9 @@
 <?php
-/**
- * @copyright 2019-2020 Dicr http://dicr.org
+/*
+ * @copyright 2019-2022 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 26.07.20 11:25:43
+ * @version 04.01.22 16:15:12
  */
 
 declare(strict_types = 1);
@@ -26,7 +26,7 @@ class SlickAsset extends AssetBundle
     public const CSS_THEME = 'slick-theme.min.css';
 
     /** @var bool включать тему */
-    public $withTheme = false;
+    public bool $withTheme = false;
 
     /** @inheritDoc */
     public $css = [
