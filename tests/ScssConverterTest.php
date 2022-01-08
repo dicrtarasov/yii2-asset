@@ -1,9 +1,9 @@
 <?php
 /*
- * @copyright 2019-2020 Dicr http://dicr.org
+ * @copyright 2019-2022 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 13.08.20 01:29:52
+ * @version 08.01.22 22:19:54
  */
 
 declare(strict_types = 1);
@@ -40,7 +40,7 @@ class ScssConverterTest extends TestCase
             'test.scss', __DIR__ . '/assets'
         );
 
-        self::assertSame('test.css', $result);
+        self::assertSame('test.scss.css', $result);
     }
 
     /**
