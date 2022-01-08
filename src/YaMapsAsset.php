@@ -3,7 +3,7 @@
  * @copyright 2019-2022 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 04.01.22 16:20:48
+ * @version 08.01.22 22:11:46
  */
 
 declare(strict_types = 1);
@@ -83,9 +83,9 @@ class YaMapsAsset extends AssetBundle
         $query = [];
 
         foreach (['apikey', 'lang', 'coordorder', 'mode', 'load'] as $field) {
-            $field = (string)$this->{$field};
-            if ($field !== '') {
-                $query[$field] = $this->{$field};
+            $val = trim((string)$this->{$field});
+            if ($val !== '') {
+                $query[$field] = $val;
             }
         }
 

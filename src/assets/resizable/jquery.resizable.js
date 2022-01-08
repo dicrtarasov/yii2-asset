@@ -2,7 +2,7 @@
  * @copyright 2019-2022 Dicr http://dicr.org
  * @author Igor A Tarasov <develop@dicr.org>
  * @license proprietary
- * @version 04.01.22 16:15:12
+ * @version 08.01.22 22:14:42
  */
 
 ((window, $) => {
@@ -85,9 +85,12 @@
             if (typeof e.clientX === "number") {
                 pos.x = e.clientX;
                 pos.y = e.clientY;
-            } else if (e.originalEvent.touches) {
-                pos.x = e.originalEvent.touches[0].clientX;
-                pos.y = e.originalEvent.touches[0].clientY;
+            } else {
+                // noinspection JSUnresolvedVariable
+                if (e.originalEvent.touches) {
+                    pos.x = e.originalEvent.touches[0].clientX;
+                    pos.y = e.originalEvent.touches[0].clientY;
+                }
             }
 
             return pos;
